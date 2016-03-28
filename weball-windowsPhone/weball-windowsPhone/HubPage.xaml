@@ -1,0 +1,31 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="weball_windowsPhone.HubPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot est la grille racine où tout le contenu de la page est placé-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid x:Name="ContentPanel">
+            <Image HorizontalAlignment="Left" Height="188" Margin="120,157,0,0" VerticalAlignment="Top" Width="234" Source="/Assets/logo-weball.png" RenderTransformOrigin="-0.683,0.448"/>
+            <Image HorizontalAlignment="Left" Height="768" VerticalAlignment="Top" Width="480" Opacity="0.3" Source="/Assets/Background/login.jpg"/>
+            <Grid HorizontalAlignment="Left" Height="175" VerticalAlignment="Top" Width="480" Margin="0,593,0,0" Background="#FF857272" Opacity="0.6">
+                <Button Content="Se connecter" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="187" BorderThickness="0" Click="ConnectButton"/>
+                <Button Content="S'inscrire" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="269,10,0,0" Width="201" BorderThickness="0" Click="RegisterButton"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Se connecter avec" VerticalAlignment="Top" Margin="145,81,0,0" Width="168"/>
+                <Image HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="69" Margin="98,111,0,0" Source="/Assets/logo-facebook.png"/>
+                <Image HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="69" Margin="305,114,0,-2" Source="/Assets/logo-google+.png"/>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

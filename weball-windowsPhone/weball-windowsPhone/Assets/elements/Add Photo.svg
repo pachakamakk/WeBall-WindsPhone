@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="253px" height="253px" viewBox="0 0 253 253" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.4 (17249) - http://www.bohemiancoding.com/sketch -->
+    <title>icon plus</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="iOS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="02.04-Sign-Up" sketch:type="MSArtboardGroup" transform="translate(-194.000000, -317.000000)" stroke-width="4" stroke="#FFFFFF">
+            <g id="corps" sketch:type="MSLayerGroup" transform="translate(196.000000, 319.000000)">
+                <g id="icon-plus" sketch:type="MSShapeGroup">
+                    <path d="M124.5,249 C193.259455,249 249,193.259455 249,124.5 C249,55.7405452 193.259455,0 124.5,0 C55.7405452,0 0,55.7405452 0,124.5 C0,193.259455 55.7405452,249 124.5,249 Z" id="oval" opacity="0.8"></path>
+                    <g id="Line-+-Line" transform="translate(65.773585, 65.773585)" stroke-linecap="square">
+                        <path d="M58.0000011,4.52410901 L57.9999989,126.675052" id="Line"></path>
+                        <path d="M0,61 L122.150943,61.000004" id="Line"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
