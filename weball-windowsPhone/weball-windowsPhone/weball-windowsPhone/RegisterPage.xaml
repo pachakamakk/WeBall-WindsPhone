@@ -1,0 +1,76 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="weball_windowsPhone.PivotPage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot est la grille racine où tout le contenu de la page est placé-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Contrôle Pivot-->
+        <phone:Pivot x:Name="registerPivot">
+            <!--Élément un de tableau croisé dynamique-->
+            <phone:PivotItem HorizontalAlignment="Left" Height="658" Margin="0" VerticalAlignment="Top" Width="470">
+                <Grid Height="761" Width="470">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Créez votre compte" VerticalAlignment="Top" Margin="74,118,0,0" Height="203" Width="366" RenderTransformOrigin="0.485,0.481" FontSize="60"/>
+                    <TextBox x:Name="BoxEmail" HorizontalAlignment="Left" Height="77" TextWrapping="Wrap" VerticalAlignment="Top" Width="407" Margin="35,349,0,0" Text="Email" BorderThickness="3" GotFocus="removeText" LostFocus="enableText"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="En créant un compte, vous acceptez nos  Conditions Générales d'Utilisation et comprenez notre Politique de confidentialité" VerticalAlignment="Top" Margin="74,539,0,0" Height="132" Width="329"/>
+                    <TextBox x:Name="BoxLogin" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="407" Margin="35,431,0,0" GotFocus="removeText" LostFocus="enableText"/>
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem Margin="6,-3,18,62">
+                <Grid HorizontalAlignment="Left" Height="649" VerticalAlignment="Top" Width="456">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="88,48,0,0" Width="307" Text="Indiquez-nous quelques informations" FontSize="50"/>
+                    <TextBox x:Name="BoxNom" HorizontalAlignment="Left" Height="77" TextWrapping="Wrap" VerticalAlignment="Top" Width="407" Margin="31,373,0,0" Text="Nom" BorderThickness="3" GotFocus="removeText" LostFocus="enableText"/>
+                    <TextBox x:Name="BoxPrénom" HorizontalAlignment="Left" Height="77" TextWrapping="Wrap" VerticalAlignment="Top" Width="407" Margin="31,455,0,0" Text="Prénom" BorderThickness="3" GotFocus="removeText" LostFocus="enableText"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Date de naissance" VerticalAlignment="Top" Margin="44,552,0,0" Height="87" Width="141" FontSize="30"/>
+                    <toolkit:DatePicker x:Name="BoxBirthday" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="267,567,0,0"/>
+                </Grid>
+
+            </phone:PivotItem>
+
+            <!--Élément deux de tableau croisé dynamique-->
+            <phone:PivotItem Margin="12,8,12,0">
+                <Grid>
+                    <Grid HorizontalAlignment="Left" Height="579" VerticalAlignment="Top" Width="446">
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="16,117,-1,0" FontSize="60">
+                        	<Run Text="Composez votre mot de passe"/>
+                        	<LineBreak/>
+                        	<Run/>
+                        </TextBlock>
+                        <PasswordBox x:Name="BoxPassword" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,374,0,0" Width="331" Height="72"/>
+                        <PasswordBox x:Name="BoxPasswordVerify" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,474,0,0" Width="331" Height="72"/>
+
+                    </Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Mot de passe" VerticalAlignment="Top" Margin="10,386,0,0" Height="53" Width="111"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Confirmer" VerticalAlignment="Top" Margin="10,483,0,0" Height="53" Width="111"/>
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem HorizontalAlignment="Left" Height="675" Margin="0" VerticalAlignment="Top" Width="470">
+                <Grid Height="675" Width="470">
+                    <Image x:Name="imageInput" HorizontalAlignment="Left" Height="346" VerticalAlignment="Top" Width="306" Margin="86,95,0,0" Source="/Assets/elements/Add Photo.png" Opacity="0.6"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ajouter une photo de profil" VerticalAlignment="Top" Margin="86,446,0,0" Height="175" Width="358" FontSize="40"/>
+                    <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="86,74,0,0" Height="367" Width="306" Opacity="0" Click="selectImage"/>
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem HorizontalAlignment="Left" Height="607" Margin="3,3,0,0" VerticalAlignment="Top" Width="467">
+                <Grid Height="607" Width="467">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Inscription terminée!" VerticalAlignment="Top" Margin="91,33,0,0" Height="203" Width="299" FontSize="60"/>
+                    <Image Margin="37,241,38,38" Source="/Assets/icon validation.png" Stretch="Fill"/>
+                </Grid>
+            </phone:PivotItem>
+        </phone:Pivot>
+        <Button x:Name="NextButton" Content="Suivant" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,686,0,0" Background="#FF319613" Click="NextButton_Click" Width="460"/>
+        <Image HorizontalAlignment="Left" Height="768" VerticalAlignment="Top" Width="480" Opacity="0.3" Source="/Assets/Background/Register.jpg" Stretch="Fill" CacheMode="BitmapCache" IsHitTestVisible="False"/>
+    </Grid>
+
+</phone:PhoneApplicationPage>

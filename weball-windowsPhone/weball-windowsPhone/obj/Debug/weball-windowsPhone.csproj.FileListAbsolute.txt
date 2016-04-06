@@ -81,11 +81,13 @@ C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weba
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\Bin\Debug\Microsoft.Phone.Controls.dll
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\HubPage.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\Bin\Debug\Microsoft.Phone.Controls.Maps.dll
-C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FivePage.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\LoginPage.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FiveProfilePage.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\UCCustomToolTip.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\Bin\Debug\WPControls.dll
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\MatchTimingPage.g.cs
-C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\PivotPage2.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\MatchSlotPage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\CreateMatchPage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ToolBarWeBall.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FiveListPage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\MapFivePage.g.cs
