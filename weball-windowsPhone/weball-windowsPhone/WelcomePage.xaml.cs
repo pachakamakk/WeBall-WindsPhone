@@ -19,7 +19,7 @@ namespace weball_windowsPhone
 
         private void mainpageButton(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/HubPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/LoginPage.xaml", UriKind.Relative));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

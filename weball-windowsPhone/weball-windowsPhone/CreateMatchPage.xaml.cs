@@ -27,12 +27,12 @@ namespace weball_windowsPhone
             if (NavigationContext.QueryString.TryGetValue("date", out parameter) && five == null)
             {
                 date = JsonConvert.DeserializeObject<DateTime>(parameter);
-                BoxHour.Value = date.Date + new TimeSpan(10, 30, 0);
                 DatePrompt.Text = date.ToString();
             }
             if (NavigationContext.QueryString.TryGetValue("five", out parameter) && five == null)
             {
-                five = WeBallAPI.FiveList.Where(s => s._id == (string)parameter).ToList()[0];
+                //five = WeBallAPI.FiveList.Where(s => s._id == (string)parameter).ToList()[0];
+                five = WeBallAPI.FiveList.First(s => s._id.Equals(parameter));
             }
 
         }
@@ -51,9 +51,9 @@ namespace weball_windowsPhone
             string selectedField = "";
             List<string> invalid = new List<string>();
             
-            if (NameBox.Text == "" || NumberBox.Text == "")
+            if (NameBox.Text == "" || NumberBox.Text == "") // you may want to check for null too. Use String.IsEmptyOrNull
                 setPopup("Merci de renseinger tous les champs!");
-            else if (Int32.Parse(NumberBox.Text) < 2 || Int32.Parse(NumberBox.Text) > 5)
+            else if (Int32.Parse(NumberBox.Text) < 2 || Int32.Parse(NumberBox.Text) > 5) // tryparse allow to handle error
                 setPopup("Merci de renseinger un nombre de joueurs entre 2 et 5!");
             else if (DateTime.Compare(date, DateTime.Today) < 0)
                 setPopup("Date du match dépassée!");
@@ -61,28 +61,31 @@ namespace weball_windowsPhone
             {
                 if (five != null)
                 {
-                    foreach (Match elem in (five.matchs.Where(match => (match.startDate.Day == date.Day) &&
+                    foreach (Match elem in (five.matchs.Where(match =>
+                                (match.startDate.Day == date.Day) && // you can use a DateTime comparer
                                 (match.startDate.Month == date.Month) &&
                                 (match.startDate.Year == date.Year) &&
-                                (match.startDate.Hour == ((DateTime)BoxHour.Value).Hour)).ToList()))
+                                (match.startDate.Hour == date.Hour)).ToList())) // ToList() is useless here
                     {
 
-                        if (!invalid.Any(s => (s == elem.field)))
+                        if (!invalid.Any(s => s == elem.field)) // you can add this to the where cause and remove the foreach
                             invalid.Add(elem.field);
                     }
+
                     foreach (Field field in fields)
                     {
-                        if (!invalid.Any(s => (s == field._id)))
+                        if (!invalid.Any(s => s == field._id)) // wtf?
                             selectedField = field._id;
                     }
+                    //if (String.IsNullOrEmpty(selectedField)) ;)
                     if (selectedField == "")
                         setPopup("Impossible de créer un match a cette horaire.");
                     else
                     {
-                        await WeBallAPI.addMatch(NameBox.Text, date, (DateTime)BoxHour.Value, ((DateTime)(BoxHour.Value)).AddHours(1),
+                        await WeBallAPI.addMatch(NameBox.Text, date, date.AddHours(1),
                                                     Int32.Parse(NumberBox.Text) * 2, selectedField);
                         if (!WeBallAPI.Success)
-                            setPopup("Erreur. Impossible de créer un match!");
+                            setPopup("Erreur. Impossible de créer un match !");
                         else
                         {
                             await WeBallAPI.getFive(five._id);

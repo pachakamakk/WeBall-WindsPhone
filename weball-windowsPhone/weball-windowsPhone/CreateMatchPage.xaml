@@ -15,7 +15,7 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
-    <Grid x:Name="LayoutRoot" Background="#FF2F2B2B">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource MainGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -36,10 +36,8 @@
             <TextBox InputScope="Number" x:Name="NumberBox" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Margin="10,254,0,0" BorderThickness="0,0,0,3" SelectionBackground="#FFD13324" Background="{StaticResource TransparentBrush}" BorderBrush="#BF8A7373" SelectionForeground="{StaticResource TransparentBrush}" GotFocus="NameBox_GotFocus" Foreground="White"/>
             <Button Content="Inviter des joueurs" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="116,349,0,0" Width="244"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Durée du match: 1h" VerticalAlignment="Top" Margin="21,449,0,0" Width="234"/>
-            <toolkit:TimePicker x:Name="BoxHour" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="363,452,0,0"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Début du match:" VerticalAlignment="Top" Margin="250,465,0,0" Height="54" Width="99"/>
         </Grid>
-        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,647,0,0" Grid.RowSpan="2"/>
+        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,667,0,0" Grid.RowSpan="2"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

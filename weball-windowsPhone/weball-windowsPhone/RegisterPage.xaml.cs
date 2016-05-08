@@ -24,7 +24,7 @@ namespace weball_windowsPhone
 
         private void removeText(object sender, RoutedEventArgs e)
         {
-            if (((TextBox)sender).Text == ((TextBox)sender).Name.Substring(3))
+            if (((TextBox)sender).Text == ((TextBox)sender).Name.Substring(3) || ((TextBox)sender).Text == "Nom Complet")
                 ((TextBox)sender).Text = "";
         }
 
@@ -63,8 +63,6 @@ namespace weball_windowsPhone
         {
             if (BoxEmail.Text == "Email")
                 return setPopup("Veuillez indiquer un email.", 0);
-            if (BoxLogin.Text == "Login")
-                return setPopup("Veuillez indiquer un login.", 0);
             if (BoxPassword.Password == "")
                 return setPopup("Veuillez indiquer un mot de passe", 2);
             if (BoxPassword.Password != BoxPasswordVerify.Password)
@@ -102,8 +100,8 @@ namespace weball_windowsPhone
                 char[] delimiters = { '/', ' ' };
                 string[] parsedBirthday = BoxBirthday.Value.ToString().Split(delimiters);
                 string birthday = parsedBirthday[2] + ',' + parsedBirthday[1] + ',' + parsedBirthday[0];
-                await WeBallAPI.register(BoxLogin.Text, BoxPassword.Password, BoxEmail.Text,
-                    BoxPrénom.Text, BoxNom.Text, birthday, imageInput.Source, coord);
+                await WeBallAPI.register(BoxPassword.Password, BoxEmail.Text,
+                    BoxNom_Complet.Text, birthday, imageInput.Source, coord);
                 NavigationService.Navigate(new Uri("/LoginPage.xaml", UriKind.Relative));
             }
         }

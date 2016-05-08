@@ -27,7 +27,7 @@
             <maps:Map x:Name="MapFive" HorizontalAlignment="Left" VerticalAlignment="Top"
 				Height="883" Width="480" Margin="0,-115,0,0" ZoomLevel="4" Center="46.1350664, -2.2894382"/>
         </Grid>
-        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,647,0,0" Grid.Row="1"/>
+        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,667,0,0" Grid.Row="1"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

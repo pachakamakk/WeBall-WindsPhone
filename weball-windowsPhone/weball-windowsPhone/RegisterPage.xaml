@@ -30,8 +30,7 @@
             <phone:PivotItem Margin="6,-3,18,62">
                 <Grid HorizontalAlignment="Left" Height="649" VerticalAlignment="Top" Width="456">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="88,48,0,0" Width="307" Text="Indiquez-nous quelques informations" FontSize="50"/>
-                    <TextBox x:Name="BoxNom" HorizontalAlignment="Left" Height="77" TextWrapping="Wrap" VerticalAlignment="Top" Width="407" Margin="31,373,0,0" Text="Nom" BorderThickness="3" GotFocus="removeText" LostFocus="enableText"/>
-                    <TextBox x:Name="BoxPrénom" HorizontalAlignment="Left" Height="77" TextWrapping="Wrap" VerticalAlignment="Top" Width="407" Margin="31,455,0,0" Text="Prénom" BorderThickness="3" GotFocus="removeText" LostFocus="enableText"/>
+                    <TextBox x:Name="BoxNom_Complet" HorizontalAlignment="Left" Height="104" TextWrapping="Wrap" VerticalAlignment="Top" Width="407" Margin="31,373,0,0" Text="Nom Complet" BorderThickness="3" GotFocus="removeText" LostFocus="enableText"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Date de naissance" VerticalAlignment="Top" Margin="44,552,0,0" Height="87" Width="141" FontSize="30"/>
                     <toolkit:DatePicker x:Name="BoxBirthday" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="267,567,0,0"/>
                 </Grid>

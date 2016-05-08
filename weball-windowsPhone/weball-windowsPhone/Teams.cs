@@ -16,13 +16,13 @@ namespace weball_windowsPhone
         public string status { get; set; }
         public string result { get; set; }
         public int buts { get; set; }
-        public int nusers { get; set; }
+        public int currentPlayers { get; set; }
         public class Player
         {
             public string uid { get; set; }
             public DateTime date { get; set; }
             public string _id { get; set; }
         }
-        public List<Player> users { get; set; }
+        public List<string> users { get; set; }
     }
 }

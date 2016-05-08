@@ -28,7 +28,12 @@ namespace weball_windowsPhone
         public int amount { get; set; }
         public DateTime createdAt { get; set; }
         public List<Teams> teams { get; set; }
-        public string createdBy { get; set; }
+        public class littleUser
+        {
+            public string _id { get; set; }
+            public string fullName { get; set; }
+        }
+        public littleUser createdBy { get; set; }
         public string createdWith { get; set; }
         public int currentPlayers { get; set; }
         public string __v { get; set; }

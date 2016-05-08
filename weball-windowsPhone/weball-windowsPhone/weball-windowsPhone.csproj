@@ -104,6 +104,9 @@
     <Compile Include="FiveProfilePage.xaml.cs">
       <DependentUpon>FiveProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListMatch.xaml.cs">
+      <DependentUpon>ListMatch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MapFivePage.xaml.cs">
       <DependentUpon>MapFivePage.xaml</DependentUpon>
     </Compile>
@@ -114,7 +117,13 @@
     <Compile Include="MatchTimingPage.xaml.cs">
       <DependentUpon>MatchTimingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProfileMatchPage.xaml.cs">
+      <DependentUpon>ProfileMatchPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Teams.cs" />
+    <Compile Include="Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="Five.cs" />
     <Compile Include="HubPage.xaml.cs">
@@ -164,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ListMatch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,7 +197,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProfileMatchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RegisterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,21 +240,29 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Background\bg.png" />
     <Content Include="Assets\Background\login.jpg" />
     <Content Include="Assets\Background\Register.jpg" />
     <Content Include="Assets\calque01.png" />
     <Content Include="Assets\elements\Add Photo.png" />
     <Content Include="Assets\elements\Add Photo.svg" />
+    <Content Include="Assets\elements\capa1%403x.png" />
     <Content Include="Assets\elements\Facebook.png" />
     <Content Include="Assets\elements\favourites.png" />
     <Content Include="Assets\elements\Feed.png" />
     <Content Include="Assets\elements\Fields-Header.jpg" />
+    <Content Include="Assets\elements\five%403x.png" />
+    <Content Include="Assets\elements\five.png" />
     <Content Include="Assets\elements\Google+.png" />
+    <Content Include="Assets\elements\group2%403x.png" />
+    <Content Include="Assets\elements\group2.png" />
     <Content Include="Assets\elements\Imported Layers Copy.png" />
     <Content Include="Assets\elements\Location.png" />
     <Content Include="Assets\elements\logo Entier.png" />
     <Content Include="Assets\elements\matchs.png" />
     <Content Include="Assets\elements\messages.png" />
+    <Content Include="Assets\elements\notif%403x.png" />
+    <Content Include="Assets\elements\notif.png" />
     <Content Include="Assets\elements\password.png" />
     <Content Include="Assets\elements\Pins.png" />
     <Content Include="Assets\elements\Search Loupe.png" />

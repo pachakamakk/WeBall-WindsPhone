@@ -15,6 +15,13 @@ namespace weball_windowsPhone
     {
         public int timing { get; set; }
         public List<Match> matches { get; set; }
+        public int nbMatch { get; set; }
+
+        public Timing(int timingParam, List<Match> matches = null)
+        {
+            this.timing = timingParam;
+            this.matches = matches;
+        }
     }
     public partial class MatchSlotPage : PhoneApplicationPage
     {
@@ -28,30 +35,90 @@ namespace weball_windowsPhone
         private void getMatchList(string parameter)
         {
             matchs = JsonConvert.DeserializeObject<List<Match>>(parameter);
-            List<Timing> timings = null;
             if (matchs != null)
             {
                 five = WeBallAPI.FiveList.Where(s => s._id == matchs[0].five).ToList()[0];
                 GridFiveImage.DataContext = five;
-                timings = new List<Timing>();
-                Timing timing = null;
-                int lastHour = 0;
-                foreach (Match match in matchs)
+            }
+        }
+        private weball_windowsPhone.Five.Timing getDaySchedule(List<weball_windowsPhone.Five.Timing> prices)
+        {
+            switch (date.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    return prices.ElementAt(1);
+                case DayOfWeek.Tuesday:
+                    return prices.ElementAt(2);
+                case DayOfWeek.Wednesday:
+                    return prices.ElementAt(3);
+                case DayOfWeek.Thursday:
+                    return prices.ElementAt(4);
+                case DayOfWeek.Friday:
+                    return prices.ElementAt(5);
+                case DayOfWeek.Saturday:
+                    return prices.ElementAt(6);
+                case DayOfWeek.Sunday:
+                    return prices.ElementAt(0);
+            }
+            return null;
+        }
+
+        private void handleTimings()
+        {
+            List<Timing> timings = createTimings();
+            populateTimings(timings);
+            ListTimings.DataContext = timings;
+        }
+        private void addToTiming(List<Timing> timings, int from, int to)
+        {
+            for (int i = from; i != to; i++)
+            {
+                if (timings.Any(d => d.timing == i))
+                    continue;
+                else
+                    timings.Add(new Timing(i));
+            }
+        }
+        private List<Timing> createTimings()
+        {
+            List<Timing> timings = new List<Timing>();
+            weball_windowsPhone.Five.Timing timing = null;
+
+            if (five != null)
+            {
+                timing = getDaySchedule(five.days);
+                if (timing.morning != -1)
+                    addToTiming(timings, 9, 12);
+                if (timing.lunch != -1)
+                    addToTiming(timings, 12, 13);
+                if (timing.afternoon != -1)
+                    addToTiming(timings, 14, 23);
+            }
+            return timings;
+        }
+        private void populateTimings(List<Timing> timings)
+        {
+            Timing timing = null;
+            foreach (Match match in matchs)
+            {
+                if (timings.Any(d => d.timing == match.startDate.Hour))
                 {
-                    if (match.startDate.Hour > lastHour)
+                    //if ((timing = timings.Where(d => d.timing == match.startDate.Hour).ToList()[0]) != null)
+                    if ((timing = timings.First(d => d.timing == match.startDate.Hour)) != null)
                     {
-                        timing = new Timing();
-                        timings.Add(timing);
-                        timing.matches = new List<Match>();
-                        timing.matches.Add(match);
-                        timing.timing = match.startDate.Hour;
-                        lastHour = match.startDate.Hour;
+                        var index = timings.IndexOf(timing);
+                        if (timings[index].matches == null)
+                            timings[index].matches = new List<Match>();
+                        timings[index].matches.Add(match);
+                        timings[index].nbMatch = timings[index].matches.Count;
                     }
-                    else if (match.startDate.Hour == lastHour)
-                        timing.matches.Add(match);
                 }
             }
-            ListTimings.DataContext = timings;
+            foreach (Timing buff in timings)
+            {
+                /*if (buff.matches != null)
+                    buff.matches = buff.matches.OrderBy(d => d.startDate).ToList();*/
+            }
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -73,6 +140,7 @@ namespace weball_windowsPhone
                             (d.startDate.Year == date.Year)).ToList();
                 }
             }
+            handleTimings();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -83,15 +151,33 @@ namespace weball_windowsPhone
         {
         }
 
-        private void createMatch(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine("Date: " + date);
-            NavigationService.Navigate(new Uri("/CreateMatchPage.xaml?five=" + five._id + "&date=" + JsonConvert.SerializeObject(date), UriKind.Relative));
-        }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/MatchTimingPage.xaml?fiveId=" + five._id, UriKind.Relative));
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Grid elem = (Grid)sender;
+        }
+        private void createMatch(object sender, RoutedEventArgs e)
+        {
+            var fixedDate = new DateTime(date.Year, date.Month, date.Day, (int)(((Button)sender).CommandParameter), 0, 0);
+            System.Diagnostics.Debug.WriteLine("Date: " + fixedDate);
+            NavigationService.Navigate(new Uri("/CreateMatchPage.xaml?five=" + five._id + "&date=" + JsonConvert.SerializeObject(fixedDate), UriKind.Relative));
+        }
+        private void JoinMatchButton_Click(object sender, RoutedEventArgs e)
+        {
+            Timing timing;
+            List<Match> matches = new List<Match>();
+
+            timing = (Timing)ListTimings.SelectedItem;
+            matches = (List<Match>)(((Button)sender).CommandParameter);
+            if (matches != null)
+            {
+                System.Diagnostics.Debug.WriteLine("Matches: " + matches.ToString());
+                NavigationService.Navigate(new Uri("/ListMatch.xaml?matchs=" + JsonConvert.SerializeObject(matches) + "&five=" + five._id, UriKind.Relative));
+            }
         }
 
     }

@@ -19,23 +19,17 @@
     <phone:PhoneApplicationPage.Resources>
         <local:ColorConverter x:Key="ColorConverter"/>
     </phone:PhoneApplicationPage.Resources>
-    <Grid x:Name="LayoutRoot" Background="#FF2E2B2B">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource MainGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="GridFiveImage" HorizontalAlignment="Left" Height="630" VerticalAlignment="Top" Width="470">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="#FF2E2B2B" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
             <WPControls:Calendar ColorConverter="{StaticResource ColorConverter}" x:Name="Calendar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,173,0,0" Height="441" Width="470" DateClicked="Calendar_DateClicked"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Créneaux" VerticalAlignment="Top" Margin="157,77,0,0" Height="51" Width="171" FontSize="35"/>
             <Button Content="Retour" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         </Grid>
-        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,17,0,0" Grid.Row="1"/>
+        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,37,0,0" Grid.Row="1"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

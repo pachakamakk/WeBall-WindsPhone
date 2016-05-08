@@ -19,10 +19,10 @@ namespace weball_windowsPhone
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            UserPrompt.Text = WeBallAPI.CurrentUser.username;
-            EmailPrompt.Text = WeBallAPI.CurrentUser.email;
-            FirstNamePrompt.Text = WeBallAPI.CurrentUser.firstName;
-            LastNamePrompt.Text = WeBallAPI.CurrentUser.lastName;
+            FirstNamePrompt.Text = WeBallAPI.currentUser.fullName;
+            profileStack.DataContext = WeBallAPI.currentUser;
+            if (WeBallAPI.currentUser != null)
+                System.Diagnostics.Debug.WriteLine("Total " + WeBallAPI.currentUser._nMatches.total); ;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

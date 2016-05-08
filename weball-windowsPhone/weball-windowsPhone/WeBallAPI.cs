@@ -16,18 +16,15 @@ using System.Text.RegularExpressions;
 using Windows.Devices.Geolocation;
 using System.IO.IsolatedStorage;
 using System.Net;
+using System.Windows.Controls;
 
 namespace weball_windowsPhone
 {
     public class WeBallAPI
     {
         private static string token = "";
-        private static string baseUri = "http://54.93.86.36"; //"http://api.weball.fr";
-        private static User currentUser;
-        public static User CurrentUser {
-            get { return currentUser; }
-            set { currentUser = value; }
-        }
+        private static string baseUri = "http://api.weball.fr";
+        public static User currentUser;
         private static List<Five> fiveList = null;
         public static List<Five> FiveList
         {
@@ -41,6 +38,7 @@ namespace weball_windowsPhone
         }
 
         private static bool success = true;
+        private static string error;
         public static bool Success
         {
             get { return success; }
@@ -107,22 +105,30 @@ namespace weball_windowsPhone
         }
         public static List<T> DeserializeToList<T>(string jsonString)
         {
-            var array = JArray.Parse(jsonString);
-            List<T> objectsList = new List<T>();
-
-            foreach (var item in array)
+            try
             {
-                System.Diagnostics.Debug.WriteLine("Item: " + item.ToString());
-                try
+                var array = JArray.Parse(jsonString);
+                List<T> objectsList = new List<T>();
+
+                foreach (var item in array)
                 {
-                    objectsList.Add(item.ToObject<T>());
+                    System.Diagnostics.Debug.WriteLine("Item: " + item.ToString());
+                    try
+                    {
+                        objectsList.Add(item.ToObject<T>());
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Error invalid elem found: " + ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine("Error invalid elem found");
-                }
+                return objectsList;
             }
-            return objectsList;
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error invalid json found: " + ex.Message);
+                return null;
+            }
         }
         public static async Task getFives()
         {
@@ -130,8 +136,8 @@ namespace weball_windowsPhone
             {
                 hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
                 HttpResponseMessage msg;
-                Uri connectionUri = new Uri(WeBallAPI.baseUri + "/five?lgt=" + currentUser.gps[0].ToString().Replace(',','.') +
-                                            "&lat=" + currentUser.gps[1].ToString().Replace(',', '.'));
+                Uri connectionUri = new Uri(WeBallAPI.baseUri + "/five?lgt=" + /* currentUser.gps[0].ToString().Replace(',','.') */ "12" +
+                                            "&lat=" + /*currentUser.gps[1].ToString().Replace(',', '.')*/ "12");
                 hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
                 System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
                 msg = await hc.GetAsync(connectionUri);
@@ -141,15 +147,39 @@ namespace weball_windowsPhone
                     success = true;
                     string response = msg.Content.ReadAsStringAsync().Result;
                     System.Diagnostics.Debug.WriteLine("step 3");
-                    System.Diagnostics.Debug.WriteLine("return: " + response);
+                    //System.Diagnostics.Debug.WriteLine("return: " + response);
                     WeBallAPI.fiveList = DeserializeToList<Five>(response);
                 }
                 else
-                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.ToString());
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
             }
         }
 
-        public static async Task addMatch(string name, DateTime date, DateTime start, DateTime end,
+        public static async Task joinMatch(string teamId)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
+                var method = new HttpMethod("PATCH");
+                var request = new HttpRequestMessage(method, WeBallAPI.baseUri + "/matches/join/" + teamId);
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                System.Diagnostics.Debug.WriteLine("Sending: " + request.RequestUri);
+                HttpResponseMessage msg;
+                msg = await hc.SendAsync(request);
+                if (msg.IsSuccessStatusCode)
+                {
+                    string response = msg.Content.ReadAsStringAsync().Result;
+                    System.Diagnostics.Debug.WriteLine("Match joined! Received: " + response);
+                    success = true;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + "cant join: " + msg.Content.ReadAsStringAsync().Result);
+                    success = false;
+                }
+            }
+        }
+        public static async Task addMatch(string name, DateTime start, DateTime end,
                                             int maxPlayers, string field, string[] invited = null)
         {
             using (HttpClient hc = new HttpClient())
@@ -208,7 +238,7 @@ namespace weball_windowsPhone
                     WeBallAPI.FiveList[index].matchs = DeserializeToList<Match>(response);
                 }
                 else
-                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.ToString());
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
             }
         }
         public static async Task getFive(string id)
@@ -236,7 +266,7 @@ namespace weball_windowsPhone
 //                    WeBallAPI.fiveList.ElementAt<index> = DeserializeToList<Five>(response);
                 }
                 else
-                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.ToString());
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
             }
         }
         public static async Task updatePos()
@@ -297,16 +327,16 @@ namespace weball_windowsPhone
                     System.Diagnostics.Debug.WriteLine("Success");
                 }
                 else
-                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.ToString());
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
             }
         }
-        public static async Task register(string username, string password, string email, string firstname,
-                                          string lastname, string birthday, ImageSource photo, float[] gps)
+        public static async Task register(string password, string email, string fullname,
+                                        string birthday, ImageSource photo, float[] gps)
         {
             using (HttpClient hc = new HttpClient())
             {
                 hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
-                User newUser = new User(username, email, password, firstname, lastname, 
+                User newUser = new User(email, password, fullname, 
                                         birthday, "data:image/bitmap;base64," + Convert.ToBase64String(ImageToBytes(photo as BitmapImage)), 
                                         gps);
                 hc.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -321,7 +351,7 @@ namespace weball_windowsPhone
                     System.Diagnostics.Debug.WriteLine("Success");
                 }
                 else
-                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.ToString());
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
             }
         }
         public static async Task login(string username, string password)
@@ -342,12 +372,13 @@ namespace weball_windowsPhone
                 {
                     success = true;
                     string response = msg.Content.ReadAsStringAsync().Result;
+                    WeBallAPI.password = password;
                     JToken parsedResponse = JObject.Parse(response);
                     WeBallAPI.token = (string) parsedResponse.SelectToken("token");
                     System.Diagnostics.Debug.WriteLine("Token: " + WeBallAPI.token);
                 }
                 else
-                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.ToString());
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
             }
         }
 
@@ -362,15 +393,16 @@ namespace weball_windowsPhone
                 if (msg.IsSuccessStatusCode)
                 {
                     string response = msg.Content.ReadAsStringAsync().Result;
+                    if (String.IsNullOrEmpty(response))
+                        return;
                     JToken parsedResponse = JObject.Parse(response);
                     success = true;
                     float[] test = new float[2];
                     test[0] = 0f;
                     test[1] = 0f;
-                    WeBallAPI.currentUser = new User((string)parsedResponse.SelectToken("username"), (string)parsedResponse.SelectToken("email"),
-                                (string)parsedResponse.SelectToken("password"), (string)parsedResponse.SelectToken("firstName"),
-                                (string)parsedResponse.SelectToken("lastName"), (string)parsedResponse.SelectToken("birthday"),
-                                (string)parsedResponse.SelectToken("photo").SelectToken("original"), test);
+                    WeBallAPI.currentUser = parsedResponse.ToObject<User>();
+                    WeBallAPI.currentUser.password = WeBallAPI.password;
+                    System.Diagnostics.Debug.WriteLine("return: " + response);
                 }
                 else
                     System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode);

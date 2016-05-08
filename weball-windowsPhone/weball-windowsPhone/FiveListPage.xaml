@@ -21,13 +21,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Background="#FF2E2B2B">
-            <ListBox x:Name="ListFive" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="563" VerticalAlignment="Top" Width="480" Margin="0,84,0,0" DoubleTap="ListFive_DoubleTap" Background="#FF2E2B2B">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Style="{StaticResource MainGridStyle}" >
+            <ListBox x:Name="ListFive" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="563" VerticalAlignment="Top" Width="480" Margin="0,84,0,0" DoubleTap="ListFive_DoubleTap" Background="Transparent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
                             <Grid Width="480">
-                                <Image Height="231" Width="480" Source="{Binding photo.url}" Stretch="Fill" Opacity="0.6"/>
+                                <Image Height="231" Width="480" Source="{Binding photo}" Stretch="Fill" Opacity="0.6"/>
                                 <TextBlock Height="160" FontSize="40" Width="300" Text="{Binding name}"/>
                                 <TextBlock Height="160" FontSize="10" Width="300" Text="{Binding _id}" Opacity="0"/>
                             </Grid>
@@ -35,7 +35,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,647,0,0" Opacity="0.8"/>
+            <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,667,0,0" Opacity="0.8"/>
         </Grid>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Five" VerticalAlignment="Top" Margin="192,10,0,0" Grid.Row="1" Height="67" Width="113" FontSize="40"/>
     </Grid>

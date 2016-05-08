@@ -25,6 +25,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <Style x:Key="MainGridStyle" TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Assets/Background/bg.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <Style x:Key="MenuStyle" TargetType="Toolkit:ContextMenu">
             <Setter Property="Template">

@@ -91,3 +91,6 @@ C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weba
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ToolBarWeBall.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FiveListPage.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\MapFivePage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ListMatch.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\Test.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ProfileMatchPage.g.cs

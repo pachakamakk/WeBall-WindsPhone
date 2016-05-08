@@ -18,27 +18,33 @@
     <Grid x:Name="LayoutRoot" Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="79*"/>
+            <RowDefinition Height="17*"/>
         </Grid.RowDefinitions>
 
         <Grid x:Name="FiveGrid" HorizontalAlignment="Left" Height="276" VerticalAlignment="Top" Width="480" Margin="-10,0,0,0" Grid.RowSpan="2">
-            <Image Source="{Binding photo.url}" HorizontalAlignment="Left" Height="276" VerticalAlignment="Top" Width="480" Stretch="Fill" Opacity="0.7"/>
+            <Image Source="{Binding photo}" HorizontalAlignment="Left" Height="276" VerticalAlignment="Top" Width="480" Stretch="Fill" Opacity="0.7"/>
             <TextBlock x:Name="NameBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding name}" VerticalAlignment="Top" Margin="151,35,0,0" Height="70" Width="203" FontSize="40"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,202,0,0" Width="190" Text="MATCHS ORGANISÉS&#x9;" Height="38"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,228,0,0" Width="190" Text="MATCHS ORGANISÉS&#x9;" Height="38"/>
             <Button Content="Réserver" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="323,188,0,0" Width="147" Click="Button_Click_1" BorderThickness="0" Background="#FF2AA028" Height="69" Opacity="0.8"/>
-            <TextBlock x:Name="TotalCount" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="30,150,0,0" Text="{Binding nTotalMatchs}" Height="33" Width="132"/>
+            <TextBlock x:Name="TotalCount" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="30,188,0,0" Text="{Binding nTotalMatchs}" Height="33" Width="132"/>
         </Grid>
-        <Grid x:Name="FiveGridBis" HorizontalAlignment="Left" Height="366" VerticalAlignment="Top" Width="480" Grid.Row="1" Margin="0,281,0,0" Background="#FF2E2B2B">
+        <Grid x:Name="FiveGridBis" HorizontalAlignment="Left" Height="391" VerticalAlignment="Top" Width="480" Grid.Row="1" Margin="0,276,0,0" Style="{StaticResource MainGridStyle}" Grid.RowSpan="2">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="HOURS" VerticalAlignment="Top" Margin="10,4,0,0" Foreground="#FF63E23E"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="ADDRESS" VerticalAlignment="Top" Margin="10,73,0,0" Foreground="#FF63E23E"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="ADDRESS" VerticalAlignment="Top" Margin="10,75,0,0" Foreground="#FF63E23E"/>
             <Rectangle Fill="#FF706868" HorizontalAlignment="Left" Height="6" Stroke="Black" VerticalAlignment="Top" Width="384" Margin="55,65,0,0"/>
-            <Rectangle Fill="#FF706868" HorizontalAlignment="Left" Height="6" Stroke="Black" VerticalAlignment="Top" Width="384" Margin="54,168,0,0"/>
-            <TextBlock Text="{Binding address}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="27,105,0,0" Height="57" Width="411"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="PHONE" VerticalAlignment="Top" Margin="10,179,0,0" Foreground="#FF63E23E"/>
-            <TextBlock Text="{Binding phone}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="27,211,0,0" Width="262"/>
-            <Rectangle Fill="#FF706868" HorizontalAlignment="Left" Height="6" Stroke="Black" VerticalAlignment="Top" Width="384" Margin="54,254,0,0"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="PRICE" VerticalAlignment="Top" Margin="10,265,0,0" Foreground="#FF63E23E"/>
+            <Rectangle Fill="#FF706868" HorizontalAlignment="Left" Height="6" Stroke="Black" VerticalAlignment="Top" Width="384" Margin="54,178,0,0"/>
+            <TextBlock Text="{Binding address}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="26,116,0,0" Height="57" Width="411"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="PHONE" VerticalAlignment="Top" Margin="10,187,0,0" Foreground="#FF63E23E"/>
+            <TextBlock Text="{Binding phone}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="28,234,0,0" Width="262"/>
+            <Rectangle Fill="#FF706868" HorizontalAlignment="Left" Height="6" Stroke="Black" VerticalAlignment="Top" Width="384" Margin="55,263,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="PRICE" VerticalAlignment="Top" Margin="10,274,0,0" Foreground="#FF63E23E"/>
+            <TextBlock HorizontalAlignment="Left" Margin="55,303,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            	<Run Text="10e Lundi - Vendredi"/>
+            	<LineBreak/>
+            	<Run Text="15e Samedi - Dimanche"/>
+            </TextBlock>
         </Grid>
-        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,647,0,0" Grid.Row="1"/>
+        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,34.821,0,0" Grid.Row="2"/>
     </Grid>
 </phone:PhoneApplicationPage>

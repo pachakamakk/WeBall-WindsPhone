@@ -81,5 +81,10 @@ namespace weball_windowsPhone
             if (((TextBox)sender).Text == "")
                 ((TextBox)sender).Text = "Email";
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/RegisterPage.xaml", UriKind.Relative));
+        }
     }
 }
