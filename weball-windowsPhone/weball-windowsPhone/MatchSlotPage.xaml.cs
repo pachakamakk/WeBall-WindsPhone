@@ -35,11 +35,6 @@ namespace weball_windowsPhone
         private void getMatchList(string parameter)
         {
             matchs = JsonConvert.DeserializeObject<List<Match>>(parameter);
-            if (matchs != null)
-            {
-                five = WeBallAPI.FiveList.Where(s => s._id == matchs[0].five).ToList()[0];
-                GridFiveImage.DataContext = five;
-            }
         }
         private weball_windowsPhone.Five.Timing getDaySchedule(List<weball_windowsPhone.Five.Timing> prices)
         {
@@ -125,7 +120,7 @@ namespace weball_windowsPhone
             string parameter = string.Empty;
             if (NavigationContext.QueryString.TryGetValue("matchs", out parameter))
                 getMatchList(parameter);
-            else if (NavigationContext.QueryString.TryGetValue("five", out parameter))
+            if (NavigationContext.QueryString.TryGetValue("five", out parameter))
             {
                 five = WeBallAPI.FiveList.Where(s => s._id == (string)parameter).ToList()[0];
                 GridFiveImage.DataContext = five;

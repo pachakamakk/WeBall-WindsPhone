@@ -213,6 +213,33 @@ namespace weball_windowsPhone
             }
 
         }
+
+        public static async Task getMatch(string matchId)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                /*   HttpResponseMessage msg;
+                   hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
+                   Uri connectionUri = new Uri(WeBallAPI.baseUri + "/matches/five/" + fiveId + query);
+                   hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                   System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
+                   msg = await hc.GetAsync(connectionUri);
+                   if (msg.IsSuccessStatusCode)
+                   {
+                       success = true;
+                       string response = msg.Content.ReadAsStringAsync().Result;
+                       if (response.Length > 2)
+                           System.Diagnostics.Debug.WriteLine("Matches received!");
+                       var five = WeBallAPI.fiveList.FirstOrDefault(s => s._id == fiveId);
+                       var index = WeBallAPI.fiveList.IndexOf(five);
+                       var newFive = JToken.Parse(response);
+                       WeBallAPI.FiveList[index].matchs = DeserializeToList<Match>(response);
+                   }
+                   else
+                       System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
+               }*/
+            }
+        }
         public static async Task getMatches(string fiveId)
         {
             using (HttpClient hc = new HttpClient())

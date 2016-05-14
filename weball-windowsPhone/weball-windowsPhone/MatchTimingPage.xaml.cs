@@ -51,7 +51,7 @@ namespace weball_windowsPhone
                     var index = five.matchs.Where(d => (d.startDate.Day == e.SelectedDate.Day) &&
                                                 (d.startDate.Month == e.SelectedDate.Month) &&
                                                 (d.startDate.Year == e.SelectedDate.Year)).ToList();
-                    NavigationService.Navigate(new Uri("/MatchSlotPage.xaml?matchs=" + JsonConvert.SerializeObject(index) + "&date=" + JsonConvert.SerializeObject(date), UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/MatchSlotPage.xaml?matchs=" + JsonConvert.SerializeObject(index) + "&date=" + JsonConvert.SerializeObject(date) + "&five=" + five._id, UriKind.Relative));
                 }
                 else
                     NavigationService.Navigate(new Uri("/MatchSlotPage.xaml?five=" + five._id + "&date=" + JsonConvert.SerializeObject(date), UriKind.Relative));
