@@ -56,7 +56,7 @@
                 <PasswordBox x:Name="boxPassword" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="3.534,5.749" Margin="61,100,0,0" Width="409" Height="78" Password="pololo"/>
                 <Image HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.506,0.535" Margin="6,102,0,0" Source="/Assets/elements/password.png"/>
                 <Image HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.506,0.535" Margin="4,22,0,0" Source="/Assets/elements/User.png"/>
-                <TextBlock x:Name="lostPassword" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Mot de passe oublié?" VerticalAlignment="Top" Margin="258,188,0,0" Width="195" Foreground="Black"/>
+                <TextBlock x:Name="lostPassword" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Mot de passe oublié?" VerticalAlignment="Top" Margin="258,188,0,0" Width="195" Foreground="Black" Tap="lostPassword_Tap"/>
             </Grid>
             <Button Content="S'inscrire" HorizontalAlignment="Left" Margin="304,699,0,0" VerticalAlignment="Top" Width="177" Height="60" BorderThickness="0" Click="Button_Click"/>
         </Grid>

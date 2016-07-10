@@ -1,0 +1,45 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:weball_windowsPhone"
+    x:Class="weball_windowsPhone.WePage"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot"  Style="{StaticResource MainGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contient le nom de l'application et le titre de la page-->
+
+        <!--ContentPanel - placez tout contenu supplémentaire ici-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,10,0,-10">
+            <Grid HorizontalAlignment="Left" Height="137" VerticalAlignment="Top" Width="480" Background="#FF3B3737">
+                <TextBlock HorizontalAlignment="Left" Margin="159,48,0,0" TextWrapping="Wrap" Text="Coéquipiers" VerticalAlignment="Top" Height="51" Width="166" FontSize="30"/>
+            </Grid>
+            <ListBox x:Name="ListFriends" HorizontalAlignment="Left" Height="510" VerticalAlignment="Top" Width="480" IsSynchronizedWithCurrentItem="False" IsTabStop="False" RenderTransformOrigin="0.5,0.5" Margin="0,137,0,0">
+                <ListBox.RenderTransform>
+                    <CompositeTransform/>
+                </ListBox.RenderTransform>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <local:FriendListElem />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <local:WindowsPhoneControl1 HorizontalAlignment="Left" Margin="0,667,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+    </Grid>
+</phone:PhoneApplicationPage>

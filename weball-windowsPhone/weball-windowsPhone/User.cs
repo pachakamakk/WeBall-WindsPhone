@@ -8,10 +8,11 @@ namespace weball_windowsPhone
 {
     public class User
     {
-        public string email { get; private set; }
+        public string email { get; set; }
+        public string _id { get; set; }
         public string password { get; set; }
-        public string fullName { get; private set; }
-        public string birthday { get; private set; }
+        public string fullName { get; set; }
+        public string birthday { get; set; }
         public string photo { get; set; }
         public class statMatch
         {

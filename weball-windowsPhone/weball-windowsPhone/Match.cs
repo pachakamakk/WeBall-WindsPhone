@@ -16,6 +16,13 @@ namespace weball_windowsPhone
 
         public List<string> invited = new List<string>();
     }
+
+    public class FiveTmp
+    {
+        public string _id { get; set; }
+        public string photo { get; set; }
+        public string name { get; set; }
+    }
     public class Match
     {
         public string _id { get; set; }
@@ -24,17 +31,12 @@ namespace weball_windowsPhone
         public DateTime endDate { get; set; }
         public int maxPlayers { get; set; }
         public string field { get; set; }
-        public string five { get; set; }
+        public FiveTmp five { get; set; }
         public int amount { get; set; }
         public DateTime createdAt { get; set; }
         public List<Teams> teams { get; set; }
-        public class littleUser
-        {
-            public string _id { get; set; }
-            public string fullName { get; set; }
-        }
-        public littleUser createdBy { get; set; }
-        public string createdWith { get; set; }
+    //    public string createdBy { get; set; }
+     //   public string createdWith { get; set; }
         public int currentPlayers { get; set; }
         public string __v { get; set; }
         public string status { get; set; }

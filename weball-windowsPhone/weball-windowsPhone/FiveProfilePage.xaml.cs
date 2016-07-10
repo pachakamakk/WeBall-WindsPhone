@@ -26,9 +26,14 @@ namespace weball_windowsPhone
             if (NavigationContext.QueryString.TryGetValue("five", out parameter))
             {
                 target = JsonConvert.DeserializeObject<Five>(parameter);
+                await WeBallAPI.getMatches(target._id);
+                target = WeBallAPI.FiveList.FirstOrDefault(s => s._id == target._id);
+                if (target.matchs != null)
+                    target.nTotalMatchs = target.matchs.Count;
+                else
+                    target.nTotalMatchs = 0;
                 FiveGrid.DataContext = target;
                 FiveGridBis.DataContext = target;
-                await WeBallAPI.getMatches(target._id);
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)

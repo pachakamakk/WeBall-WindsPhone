@@ -24,7 +24,6 @@
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Créez votre compte" VerticalAlignment="Top" Margin="74,118,0,0" Height="203" Width="366" RenderTransformOrigin="0.485,0.481" FontSize="60"/>
                     <TextBox x:Name="BoxEmail" HorizontalAlignment="Left" Height="77" TextWrapping="Wrap" VerticalAlignment="Top" Width="407" Margin="35,349,0,0" Text="Email" BorderThickness="3" GotFocus="removeText" LostFocus="enableText"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="En créant un compte, vous acceptez nos  Conditions Générales d'Utilisation et comprenez notre Politique de confidentialité" VerticalAlignment="Top" Margin="74,539,0,0" Height="132" Width="329"/>
-                    <TextBox x:Name="BoxLogin" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="407" Margin="35,431,0,0" GotFocus="removeText" LostFocus="enableText"/>
                 </Grid>
             </phone:PivotItem>
             <phone:PivotItem Margin="6,-3,18,62">

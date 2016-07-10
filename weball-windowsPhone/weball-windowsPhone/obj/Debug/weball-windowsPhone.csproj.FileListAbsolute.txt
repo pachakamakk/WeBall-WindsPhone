@@ -94,3 +94,14 @@ C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weba
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ListMatch.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\Test.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ProfileMatchPage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FriendRequestControl.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\NotifControl.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\NotifsPage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FriendListElem.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\WePage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ParamProfilePage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ParamsProfileControl.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ChangePasswordPage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ForgotPasswordPage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FriendSearchControl.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\SearchUserPage.g.cs

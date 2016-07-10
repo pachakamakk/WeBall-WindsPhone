@@ -44,12 +44,17 @@ namespace weball_windowsPhone
             ((TextBlock)sender).Text = "Unknown";
         }
 
-        private void ListMatchs_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
+        private async void ListMatchs_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Match match;
 
             match = (Match)(((ListBox)sender).SelectedItem);
-            NavigationService.Navigate(new Uri("/ProfileMatchPage.xaml?match=" + JsonConvert.SerializeObject(match) + "&five=" + fiveId, UriKind.Relative));
+            if (match != null)
+            {
+                await WeBallAPI.getMatch(match._id);
+                var five = WeBallAPI.FiveList.FirstOrDefault(s => s._id == fiveId);
+                NavigationService.Navigate(new Uri("/ProfileMatchPage.xaml?match=" + JsonConvert.SerializeObject(five.matchs.FirstOrDefault(s => s._id == match._id)) + "&five=" + fiveId, UriKind.Relative));
+            }
         }
     }
 }

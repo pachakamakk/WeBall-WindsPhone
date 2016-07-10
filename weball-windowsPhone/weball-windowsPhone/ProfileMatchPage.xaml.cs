@@ -14,10 +14,36 @@ namespace weball_windowsPhone
     public partial class ProfileMatchPage : PhoneApplicationPage
     {
         public Five five;
+        public int teamId = -1;
         public Match match;
         public ProfileMatchPage()
         {
             InitializeComponent();
+        }
+        
+        private bool checkMember(Teams team, int id)
+        {
+            foreach (weball_windowsPhone.Teams.littleUser user in team.users)
+            {
+                if (user._id == WeBallAPI.currentUser._id)
+                {
+                    teamId = id;
+                    return true;
+                }
+            }
+            return false;
+        }
+        private string getMember(string name)
+        {
+            foreach (Teams team in match.teams)
+            {
+                foreach (weball_windowsPhone.Teams.littleUser user in team.users)
+                {
+                    if (user.fullName == name)
+                        return user._id;
+                }
+            }
+            return "";
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -44,7 +70,19 @@ namespace weball_windowsPhone
             }
             ContentPanel.DataContext = match;
             fiveGrid.DataContext = five;
+            System.Diagnostics.Debug.WriteLine("BITE");
             DateBlock.Text = match.startDate.ToString();
+            System.Diagnostics.Debug.WriteLine("BITEEE");
+            if (checkMember(match.teams[0], 0) || checkMember(match.teams[1], 1))
+            {
+                QuitButton.IsEnabled = true;
+                QuitButton.Opacity = 100;
+                buttonJoin1.IsEnabled = false;
+                buttonJoin1.Opacity = 0;
+                buttonJoin2.IsEnabled = false;
+                buttonJoin2.Opacity = 0;
+            }
+            System.Diagnostics.Debug.WriteLine("BITZZAZ");
         }
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -77,5 +115,29 @@ namespace weball_windowsPhone
                 setPopup("Erreur");
         }
 
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (teamId == -1)
+                return;
+            await WeBallAPI.leaveMatch(match.teams[teamId]._id);
+            MessageBoxResult result =
+                MessageBox.Show("Match quitté!",
+                    "Confirmation",
+            MessageBoxButton.OK);
+            NavigationService.Navigate(new Uri("/FiveProfilePage.xaml?five=" + JsonConvert.SerializeObject(five), UriKind.Relative));
+        }
+
+        private void Grid_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+        }
+
+        private void TextBlock_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            string name = ((TextBlock)sender).Text;
+            string id = getMember(name);
+            
+            if (id != "")
+                NavigationService.Navigate(new Uri("/ProfilePage.xaml?user=" + id, UriKind.Relative));
+        }
     }
 }

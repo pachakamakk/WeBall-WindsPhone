@@ -90,6 +90,10 @@ namespace weball_windowsPhone
                         {
                             await WeBallAPI.getFive(five._id);
                             var selectedparkdata = WeBallAPI.FiveList.Where(s => s._id == five._id).ToList();
+                            MessageBoxResult result =
+                                MessageBox.Show("Match créé!",
+                                    "Confirmation",
+                             MessageBoxButton.OK);
                             NavigationService.Navigate(new Uri("/FiveProfilePage.xaml?five=" + JsonConvert.SerializeObject(selectedparkdata[0]), UriKind.Relative));
                         }
                     }

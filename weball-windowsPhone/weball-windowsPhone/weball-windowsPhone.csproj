@@ -93,6 +93,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangePasswordPage.xaml.cs">
+      <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ColorConverter.cs" />
     <Compile Include="CreateMatchPage.xaml.cs">
       <DependentUpon>CreateMatchPage.xaml</DependentUpon>
@@ -103,6 +106,18 @@
     </Compile>
     <Compile Include="FiveProfilePage.xaml.cs">
       <DependentUpon>FiveProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ForgotPasswordPage.xaml.cs">
+      <DependentUpon>ForgotPasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FriendListElem.xaml.cs">
+      <DependentUpon>FriendListElem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FriendRequestControl.xaml.cs">
+      <DependentUpon>FriendRequestControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FriendSearchControl.xaml.cs">
+      <DependentUpon>FriendSearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListMatch.xaml.cs">
       <DependentUpon>ListMatch.xaml</DependentUpon>
@@ -117,8 +132,25 @@
     <Compile Include="MatchTimingPage.xaml.cs">
       <DependentUpon>MatchTimingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NotifControl.xaml.cs">
+      <DependentUpon>NotifControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notification.cs" />
+    <Compile Include="NotifsPage.xaml.cs">
+      <DependentUpon>NotifsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ParamProfilePage.xaml.cs">
+      <DependentUpon>ParamProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ParamsProfileControl.xaml.cs">
+      <DependentUpon>ParamsProfileControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProfileMatchPage.xaml.cs">
       <DependentUpon>ProfileMatchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Relation.cs" />
+    <Compile Include="SearchUserPage.xaml.cs">
+      <DependentUpon>SearchUserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Teams.cs" />
     <Compile Include="Test.xaml.cs">
@@ -155,12 +187,19 @@
     <Compile Include="ToolBarWeBall.xaml.cs">
       <DependentUpon>ToolBarWeBall.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WePage.xaml.cs">
+      <DependentUpon>WePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="ChangePasswordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CreateMatchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +209,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FiveProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ForgotPasswordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FriendListElem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FriendRequestControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FriendSearchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,11 +252,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NotifControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NotifsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ParamProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ParamsProfileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProfileMatchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegisterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,6 +300,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Background\.DS_Store" />
@@ -244,6 +323,9 @@
     <Content Include="Assets\Background\login.jpg" />
     <Content Include="Assets\Background\Register.jpg" />
     <Content Include="Assets\calque01.png" />
+    <Content Include="Assets\cellElementsCellCheck.png" />
+    <Content Include="Assets\close47.png" />
+    <Content Include="Assets\create.png" />
     <Content Include="Assets\elements\Add Photo.png" />
     <Content Include="Assets\elements\Add Photo.svg" />
     <Content Include="Assets\elements\capa1%403x.png" />
@@ -273,6 +355,7 @@
     <Content Include="Assets\logo-facebook.png" />
     <Content Include="Assets\logo-google+.png" />
     <Content Include="Assets\logo-weball.png" />
+    <Content Include="Assets\settings.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -8,6 +8,12 @@ namespace weball_windowsPhone
 {
     public class Teams
     {
+        public class littleUser
+        {
+            public string _id { get; set; }
+            public string fullName { get; set; }
+        }
+
         public string _id { get; set; }
         public string name { get; set; }
         public string match { get; set; }
@@ -23,6 +29,6 @@ namespace weball_windowsPhone
             public DateTime date { get; set; }
             public string _id { get; set; }
         }
-        public List<string> users { get; set; }
+        public List<littleUser> users { get; set; }
     }
 }

@@ -86,5 +86,9 @@ namespace weball_windowsPhone
         {
             NavigationService.Navigate(new Uri("/RegisterPage.xaml", UriKind.Relative));
         }
+
+        private void lostPassword_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+        }
     }
 }

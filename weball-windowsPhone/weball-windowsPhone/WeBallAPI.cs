@@ -17,14 +17,19 @@ using Windows.Devices.Geolocation;
 using System.IO.IsolatedStorage;
 using System.Net;
 using System.Windows.Controls;
+using System.Windows;
 
 namespace weball_windowsPhone
 {
     public class WeBallAPI
     {
         private static string token = "";
-        private static string baseUri = "http://api.weball.fr";
+        private static string baseUri = "https://api.weball.fr";
         public static User currentUser;
+        public static NotifHandler notifs;
+        public static User profileUser;
+        public static List<Relation> relations;
+        public static List<littleUser> search;
         private static List<Five> fiveList = null;
         public static List<Five> FiveList
         {
@@ -130,6 +135,39 @@ namespace weball_windowsPhone
                 return null;
             }
         }
+        public static async Task resetPassword(string email)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                var method = new HttpMethod("PATCH");
+                HttpResponseMessage msg;
+                var keyValuePairs = new Dictionary<string, string>();
+                keyValuePairs.Add("email", email);
+                var content = new FormUrlEncodedContent(keyValuePairs);
+                var request = new HttpRequestMessage(method, WeBallAPI.baseUri + "/resetpassword")
+                {   
+                    Content = content
+                };
+                msg = await hc.SendAsync(request);
+                if (msg.IsSuccessStatusCode)
+                {
+                    MessageBoxResult result =
+                        MessageBox.Show("Email envoyé!",
+                            "Requete",
+                     MessageBoxButton.OK);
+                    success = true;
+                }
+                else
+                {
+                    MessageBoxResult result =
+                        MessageBox.Show("Erreur. Mauvais e-mail?",
+                            "Requete",
+                    MessageBoxButton.OK);
+                    success = false;
+                }
+            }
+        }
         public static async Task getFives()
         {
             using (HttpClient hc = new HttpClient())
@@ -154,6 +192,147 @@ namespace weball_windowsPhone
                     System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
             }
         }
+        public static async Task getNotifications()
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
+                HttpResponseMessage msg;
+                Uri connectionUri = new Uri(WeBallAPI.baseUri + "/notifications");
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
+                msg = await hc.GetAsync(connectionUri);
+                if (msg.IsSuccessStatusCode)
+                {
+                    success = true;
+                    string response = msg.Content.ReadAsStringAsync().Result;
+                    System.Diagnostics.Debug.WriteLine("step 3");
+                    System.Diagnostics.Debug.WriteLine("return: " + response);
+                    JToken parsedResponse = JObject.Parse(response);
+                    WeBallAPI.notifs = parsedResponse.ToObject<NotifHandler>();
+                }
+                else
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
+            }
+        }
+        public static async Task getRelations()
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
+                HttpResponseMessage msg;
+                Uri connectionUri = new Uri(WeBallAPI.baseUri + "/relationship/");
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
+                msg = await hc.GetAsync(connectionUri);
+                if (msg.IsSuccessStatusCode)
+                {
+                    success = true;
+                    string response = msg.Content.ReadAsStringAsync().Result;
+                    System.Diagnostics.Debug.WriteLine("step 3");
+                    System.Diagnostics.Debug.WriteLine("return: " + response);
+                    WeBallAPI.relations = DeserializeToList<Relation>(response);
+                }
+                else
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
+            }
+        }
+
+        public static async Task sendRequest(string userId)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                var method = new HttpMethod("POST");
+                var request = new HttpRequestMessage(method, WeBallAPI.baseUri + "/relationship/request/" + userId);
+                HttpResponseMessage msg;
+                msg = await hc.SendAsync(request);
+                if (msg.IsSuccessStatusCode)
+                {
+                    MessageBoxResult result =
+                        MessageBox.Show("Requête envoyée!",
+                            "Requete",
+                     MessageBoxButton.OK);
+                    success = true;
+                }
+                else
+                {
+                    success = false;
+                    System.Diagnostics.Debug.WriteLine("Could not send request");
+                }
+            }
+        }
+        public static async Task acceptRequest(string userId)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                var method = new HttpMethod("PATCH");
+                var request = new HttpRequestMessage(method, WeBallAPI.baseUri + "/relationship/request/" + userId);
+                HttpResponseMessage msg;
+                msg = await hc.SendAsync(request);
+                if (msg.IsSuccessStatusCode)
+                {
+                    System.Diagnostics.Debug.WriteLine("Request sent!");
+                    MessageBoxResult result =
+                        MessageBox.Show("Requête acceptée!",
+                            "Requete",
+                     MessageBoxButton.OK);
+                    success = true;
+                }
+                else
+                {
+                    success = false;
+                    System.Diagnostics.Debug.WriteLine("Could not send request");
+                }
+            }
+        }
+        public static async Task denyRequest(string userId)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                var method = new HttpMethod("DELETE");
+                var request = new HttpRequestMessage(method, WeBallAPI.baseUri + "/relationship/request/" + userId);
+                HttpResponseMessage msg;
+                msg = await hc.SendAsync(request);
+                if (msg.IsSuccessStatusCode)
+                {
+                    System.Diagnostics.Debug.WriteLine("Request denied!");
+                    MessageBoxResult result =
+                        MessageBox.Show("Requête refusée!",
+                            "Requete",
+                     MessageBoxButton.OK);
+                    success = true;
+                }
+                else
+                {
+                    success = false;
+                    System.Diagnostics.Debug.WriteLine("Could not send request");
+                }
+            }
+        }
+        public static async Task eraseRelationship(string userId)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                var method = new HttpMethod("DELETE");
+                var request = new HttpRequestMessage(method, WeBallAPI.baseUri + "/relationship/" + userId);
+                HttpResponseMessage msg;
+                msg = await hc.SendAsync(request);
+                if (msg.IsSuccessStatusCode)
+                {
+                    success = true;
+                }
+                else
+                {
+                    success = false;
+                    System.Diagnostics.Debug.WriteLine("Could not send request");
+                }
+            }
+        }
+
 
         public static async Task joinMatch(string teamId)
         {
@@ -214,13 +393,34 @@ namespace weball_windowsPhone
 
         }
 
+        public static async Task searchUser(string name)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                HttpResponseMessage msg;
+                hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
+                Uri connectionUri = new Uri(WeBallAPI.baseUri + "/users/search/" + name);
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
+                msg = await hc.GetAsync(connectionUri);
+                if (msg.IsSuccessStatusCode)
+                {
+                    success = true;
+                    string response = msg.Content.ReadAsStringAsync().Result;
+                    System.Diagnostics.Debug.WriteLine("Result: " + response);
+                    WeBallAPI.search = DeserializeToList<littleUser>(response);
+                }
+                else
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
+            }
+        }
         public static async Task getMatch(string matchId)
         {
             using (HttpClient hc = new HttpClient())
             {
-                /*   HttpResponseMessage msg;
+                   HttpResponseMessage msg;
                    hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
-                   Uri connectionUri = new Uri(WeBallAPI.baseUri + "/matches/five/" + fiveId + query);
+                   Uri connectionUri = new Uri(WeBallAPI.baseUri + "/matches/" + matchId);
                    hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
                    System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
                    msg = await hc.GetAsync(connectionUri);
@@ -229,16 +429,19 @@ namespace weball_windowsPhone
                        success = true;
                        string response = msg.Content.ReadAsStringAsync().Result;
                        if (response.Length > 2)
-                           System.Diagnostics.Debug.WriteLine("Matches received!");
-                       var five = WeBallAPI.fiveList.FirstOrDefault(s => s._id == fiveId);
+                           System.Diagnostics.Debug.WriteLine("Match received!\n" + response);
+                       JToken parsedResponse = JObject.Parse(response);
+                       var match = parsedResponse.ToObject<Match>();
+                       var five = WeBallAPI.fiveList.FirstOrDefault(s => s._id == match.five._id);
                        var index = WeBallAPI.fiveList.IndexOf(five);
-                       var newFive = JToken.Parse(response);
-                       WeBallAPI.FiveList[index].matchs = DeserializeToList<Match>(response);
+                       var oldMatch = five.matchs.FirstOrDefault(s => s._id == matchId);
+                       var indexMatch = five.matchs.IndexOf(oldMatch);
+                       five.matchs[indexMatch] = match;
+                       WeBallAPI.FiveList[index] = five;
                    }
                    else
                        System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
-               }*/
-            }
+             }
         }
         public static async Task getMatches(string fiveId)
         {
@@ -268,6 +471,29 @@ namespace weball_windowsPhone
                     System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
             }
         }
+        public static async Task leaveMatch(string id)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                HttpResponseMessage msg;
+                hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                var method = new HttpMethod("DELETE");
+                var request = new HttpRequestMessage(method, WeBallAPI.baseUri + "/matches/leave/" + id);
+                msg = await hc.SendAsync(request);
+                if (msg.IsSuccessStatusCode)
+                {
+                    success = true;
+                    string response = msg.Content.ReadAsStringAsync().Result;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
+                    success = false;
+                }
+            }
+        }
+
         public static async Task getFive(string id)
         {
             using (HttpClient hc = new HttpClient())
@@ -406,6 +632,33 @@ namespace weball_windowsPhone
                 }
                 else
                     System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode + " and " + msg.Content.ReadAsStringAsync().Result);
+            }
+        }
+
+        public static async Task getUser(string userId)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
+                HttpResponseMessage msg;
+                Uri connectionUri = new Uri(WeBallAPI.baseUri + "/users/" + userId);
+                hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                msg = await hc.GetAsync(connectionUri);
+                if (msg.IsSuccessStatusCode)
+                {
+                    string response = msg.Content.ReadAsStringAsync().Result;
+                    if (String.IsNullOrEmpty(response))
+                        return;
+                    JToken parsedResponse = JObject.Parse(response);
+                    success = true;
+                    float[] test = new float[2];
+                    test[0] = 0f;
+                    test[1] = 0f;
+                    WeBallAPI.profileUser = parsedResponse.ToObject<User>();
+                    System.Diagnostics.Debug.WriteLine("return: " + response);
+                }
+                else
+                    System.Diagnostics.Debug.WriteLine("Error " + msg.StatusCode);
             }
         }
 

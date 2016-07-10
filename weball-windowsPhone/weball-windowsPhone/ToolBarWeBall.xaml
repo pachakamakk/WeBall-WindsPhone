@@ -28,8 +28,8 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="MAP" VerticalAlignment="Top" Margin="195,72,0,0" Foreground="#FF2EAF2E"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="FIVES" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="295,72,0,0"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="PROFILE" VerticalAlignment="Top" Margin="86,72,0,0" Grid.Column="1"/>
-            <Button Content="Button" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0" Height="67" Width="72"/>
-            <Button Content="Button" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0" Height="59" Width="70" Margin="91,5,0,0"/>
+            <Button x:Name="ButtonNotifs" Content="Button" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0" Height="67" Width="72"/>
+            <Button x:Name="ButtonWe" Content="Button" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0" Height="59" Width="70" Margin="91,5,0,0"/>
             <Button x:Name="ButtonMapFive" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0" Height="67" Width="70" Margin="189,0,0,0" Click="Button_Click"/>
             <Button x:Name="ButtonFiveList" Content="Button" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0" Height="62" Width="69" Margin="285,5,0,0" Grid.ColumnSpan="2"/>
             <Button x:Name="ButtonProfile" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0" Height="62" Width="73" Margin="86,5,0,0" Grid.Column="1" Click="Button_Click"/>

@@ -32,14 +32,19 @@
                     <ColumnDefinition Width="273*"/>
                     <ColumnDefinition Width="197*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="FirstNamePrompt" TextWrapping="Wrap" Width="191" FontSize="30" Margin="145,202,134,102" Grid.ColumnSpan="2">
+                <TextBlock x:Name="FirstNamePrompt" TextWrapping="Wrap" Width="191" FontSize="30" Margin="144,159,135,100" Grid.ColumnSpan="2">
             		<Run Text="chargement..."/>
                 </TextBlock>
-                <Image x:Name="ProfileImage" Source="" Margin="165,34,177,208" Grid.ColumnSpan="2"/>
+                <Image x:Name="ProfileImage" Source="{Binding photo}" Margin="165,34,177,208" Grid.ColumnSpan="2"/>
                 <TextBlock HorizontalAlignment="Left" Margin="41,266,0,0" TextWrapping="Wrap" Text="MATCHES" VerticalAlignment="Top"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="64,266,0,0" TextWrapping="Wrap" Text="TEAMMATES" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="41,298,0,0" TextWrapping="Wrap" Text="{Binding _nMatches.total}" VerticalAlignment="Top"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,303,0,0" TextWrapping="Wrap" Text="{Binding relationShip.nRelations}" VerticalAlignment="Top"/>
+                <Button x:Name="addFriend" Grid.Column="1" HorizontalAlignment="Left" Margin="49,79,0,0" VerticalAlignment="Top" Width="127" BorderThickness="0" Opacity="0" IsEnabled="False" Click="addFriend_Click">
+                    <Image HorizontalAlignment="Left" Height="57" VerticalAlignment="Top" Width="85" Source="/Assets/create.png"/>
+                </Button>
+                <Image HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="41" Source="/Assets/settings.png" Margin="12,13,0,0" Tap="Image_Tap"/>
+                <Image x:Name="searchImage" HorizontalAlignment="Left" Height="45" Margin="117,13,0,0" VerticalAlignment="Top" Width="59" Source="/Assets/elements/Search Loupe.png" Tap="goSearch" Grid.Column="1"/>
             </Grid>
             <Grid Height="209">
                 <TextBlock HorizontalAlignment="Left" Margin="24,28,0,0" TextWrapping="Wrap" Text="Matchs joués:" VerticalAlignment="Top"/>
