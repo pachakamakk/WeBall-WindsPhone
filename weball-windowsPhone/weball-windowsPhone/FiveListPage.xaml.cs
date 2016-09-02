@@ -30,6 +30,8 @@ namespace weball_windowsPhone
             if (obj != null)
             {
                 await WeBallAPI.getFive(obj._id);
+                if (WeBallAPI.Success == false)
+                    return;
                 var selectedparkdata = WeBallAPI.FiveList.Where(s => s._id == obj._id).ToList();
                 NavigationService.Navigate(new Uri("/FiveProfilePage.xaml?five=" + JsonConvert.SerializeObject(selectedparkdata[0]), UriKind.Relative));
             }

@@ -49,6 +49,8 @@ namespace weball_windowsPhone
             string birthday = parsedBirthday[2] + ',' + parsedBirthday[1] + ',' + parsedBirthday[0];
             WeBallAPI.currentUser.birthday = birthday;
             await WeBallAPI.updateUser();
+            if (WeBallAPI.Success == false)
+                return;
             MessageBoxResult result =
                 MessageBox.Show("Profil édité!",
                     "Confirmation",

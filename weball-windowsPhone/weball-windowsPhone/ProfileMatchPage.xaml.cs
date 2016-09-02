@@ -104,13 +104,20 @@ namespace weball_windowsPhone
             if ((string)(obj.CommandParameter) == "1")
             {
                 await WeBallAPI.joinMatch(match.teams[0]._id);
+                if (WeBallAPI.Success == false)
+                    return;
             }
             else
             {
                 await WeBallAPI.joinMatch(match.teams[1]._id);
+                if (WeBallAPI.Success == false)
+                    return;
             }
             if (WeBallAPI.Success)
+            {
+                NavigationService.Navigate(new Uri("/MatchTimingPage.xaml?five=" + JsonConvert.SerializeObject(five), UriKind.Relative));
                 setPopup("Succes!");
+            }
             else
                 setPopup("Erreur");
         }
@@ -120,6 +127,8 @@ namespace weball_windowsPhone
             if (teamId == -1)
                 return;
             await WeBallAPI.leaveMatch(match.teams[teamId]._id);
+            if (WeBallAPI.Success == false)
+                return;
             MessageBoxResult result =
                 MessageBox.Show("Match quitté!",
                     "Confirmation",
@@ -138,6 +147,11 @@ namespace weball_windowsPhone
             
             if (id != "")
                 NavigationService.Navigate(new Uri("/ProfilePage.xaml?user=" + id, UriKind.Relative));
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MatchTimingPage.xaml?five=" + JsonConvert.SerializeObject(five), UriKind.Relative)); 
         }
     }
 }

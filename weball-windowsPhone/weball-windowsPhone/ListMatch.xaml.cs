@@ -52,6 +52,8 @@ namespace weball_windowsPhone
             if (match != null)
             {
                 await WeBallAPI.getMatch(match._id);
+                if (WeBallAPI.Success == false)
+                    return;
                 var five = WeBallAPI.FiveList.FirstOrDefault(s => s._id == fiveId);
                 NavigationService.Navigate(new Uri("/ProfileMatchPage.xaml?match=" + JsonConvert.SerializeObject(five.matchs.FirstOrDefault(s => s._id == match._id)) + "&five=" + fiveId, UriKind.Relative));
             }

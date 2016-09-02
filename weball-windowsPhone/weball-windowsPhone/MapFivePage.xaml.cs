@@ -33,6 +33,8 @@ namespace weball_windowsPhone
             MenuItem item = (MenuItem)sender;
             string selecteditem = item.Tag.ToString();
             await WeBallAPI.getFive(selecteditem);
+            if (WeBallAPI.Success == false)
+                return;
             var selectedparkdata = WeBallAPI.FiveList.Where(s => s._id == selecteditem).ToList();
             NavigationService.Navigate(new Uri("/FiveProfilePage.xaml?five=" + JsonConvert.SerializeObject(selectedparkdata[0]), UriKind.Relative));
         }
@@ -41,6 +43,8 @@ namespace weball_windowsPhone
             Image item = (Image)sender;
             string selecteditem = item.Tag.ToString();
             await WeBallAPI.getFive(selecteditem);
+            if (WeBallAPI.Success == false)
+                return;
             var selectedparkdata = WeBallAPI.FiveList.Where(s => s._id == selecteditem).ToList();
             if (selectedparkdata.Count > 0)
             {

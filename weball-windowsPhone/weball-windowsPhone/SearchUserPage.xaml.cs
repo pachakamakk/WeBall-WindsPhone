@@ -22,6 +22,8 @@ namespace weball_windowsPhone
             if (searchQuery.Text.Length >= 3)
             {
                 await WeBallAPI.searchUser(searchQuery.Text);
+                if (WeBallAPI.Success == false)
+                    return;
                 ListSearch.ItemsSource = WeBallAPI.search;
             }
         }

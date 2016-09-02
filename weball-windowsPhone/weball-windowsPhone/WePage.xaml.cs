@@ -15,6 +15,8 @@ namespace weball_windowsPhone
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             await WeBallAPI.getRelations();
+            if (WeBallAPI.Success == false)
+                return;
             ListFriends.ItemsSource = WeBallAPI.relations;
         }
         public WePage()

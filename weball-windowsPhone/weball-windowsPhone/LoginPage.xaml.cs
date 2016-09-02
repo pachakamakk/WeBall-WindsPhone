@@ -37,7 +37,11 @@ namespace weball_windowsPhone
         private async void buttonLogin_Click(object sender, RoutedEventArgs e)
         {
             await tryLogin(sender, e);
+            if (WeBallAPI.Success == false)
+                return;
             await WeBallAPI.me();
+            if (WeBallAPI.Success == false)
+                return;
             System.Diagnostics.Debug.WriteLine("Logging in");
             if (!string.IsNullOrEmpty(WeBallAPI.Token))
             {
@@ -54,11 +58,8 @@ namespace weball_windowsPhone
                 }
                 System.Diagnostics.Debug.WriteLine("get Fives");
                 await WeBallAPI.getFives();
-                System.Diagnostics.Debug.WriteLine("zeazeazeaze");
-                if (WeBallAPI.FiveList != null)
-                    System.Diagnostics.Debug.WriteLine("OUI");
-                else
-                    System.Diagnostics.Debug.WriteLine("NOOOOON");
+                if (WeBallAPI.Success == false)
+                    return;
                 NavigationService.Navigate(new Uri("/ProfilePage.xaml", UriKind.Relative));
             }
             else

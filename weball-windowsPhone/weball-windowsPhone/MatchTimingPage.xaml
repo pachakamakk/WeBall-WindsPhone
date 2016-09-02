@@ -24,12 +24,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="GridFiveImage" HorizontalAlignment="Left" Height="630" VerticalAlignment="Top" Width="470">
-            <WPControls:Calendar ColorConverter="{StaticResource ColorConverter}" x:Name="Calendar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,173,0,0" Height="441" Width="470" DateClicked="Calendar_DateClicked"/>
+        <Grid x:Name="GridFiveImage" HorizontalAlignment="Left" Height="662" VerticalAlignment="Top" Width="470" Grid.RowSpan="2">
+            <WPControls:Calendar ColorConverter="{StaticResource ColorConverter}" x:Name="Calendar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,173,0,0" Height="489" Width="470" DateClicked="Calendar_DateClicked"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Créneaux" VerticalAlignment="Top" Margin="157,77,0,0" Height="51" Width="171" FontSize="35"/>
             <Button Content="Retour" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         </Grid>
-        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,37,0,0" Grid.Row="1"/>
+        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,667,0,0" Grid.Row="1"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

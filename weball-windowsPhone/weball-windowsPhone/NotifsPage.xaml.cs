@@ -15,6 +15,8 @@ namespace weball_windowsPhone
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             await WeBallAPI.getNotifications();
+            if (WeBallAPI.Success == false)
+                return;
             ListFriendsRequests.ItemsSource = WeBallAPI.notifs.requests;
         }
         public NotifPage()

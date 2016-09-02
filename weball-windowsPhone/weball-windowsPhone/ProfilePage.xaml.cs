@@ -22,19 +22,29 @@ namespace weball_windowsPhone
             
             if (NavigationContext.QueryString.TryGetValue("user", out parameter))
             {
-                await WeBallAPI.getUser(parameter);
-                FirstNamePrompt.Text = WeBallAPI.profileUser.fullName;
-                profileStack.DataContext = WeBallAPI.profileUser;
-                addFriend.Opacity = 100;
-                addFriend.IsEnabled = true;
+                if (parameter == WeBallAPI.currentUser._id)
+                {
+                    FirstNamePrompt.Text = WeBallAPI.currentUser.fullName;
+                    profileStack.DataContext = WeBallAPI.currentUser;
+                }
+                else
+                {
+                    await WeBallAPI.getUser(parameter);
+                    if (WeBallAPI.Success == false)
+                        return;
+                    FirstNamePrompt.Text = WeBallAPI.profileUser.fullName;
+                    profileStack.DataContext = WeBallAPI.profileUser;
+                    addFriend.Opacity = 100;
+                    addFriend.IsEnabled = true;
+                }
             }
             else
             {
                 await WeBallAPI.me();
+                if (WeBallAPI.Success == false)
+                    return;
                 FirstNamePrompt.Text = WeBallAPI.currentUser.fullName;
                 profileStack.DataContext = WeBallAPI.currentUser;
-                if (WeBallAPI.currentUser != null)
-                    System.Diagnostics.Debug.WriteLine("Total " + WeBallAPI.currentUser._nMatches.total);
             }
         }
 

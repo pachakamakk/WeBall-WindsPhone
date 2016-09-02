@@ -26,7 +26,7 @@ namespace weball_windowsPhone
             public int nRelations { get; set; }
             public int nRequests { get; set; }
         }
-        public relations relationShip { get; set; }
+        public relations _relationShip { get; set; }
         public statMatch _nMatches { get; set; }
 
         public float[] gps;

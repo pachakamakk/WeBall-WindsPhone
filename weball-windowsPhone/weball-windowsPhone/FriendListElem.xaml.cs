@@ -27,5 +27,10 @@ namespace weball_windowsPhone
             }
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfilePage.xaml?user=" + (string)(((Button)sender).CommandParameter), UriKind.Relative));
+        }
     }
 }

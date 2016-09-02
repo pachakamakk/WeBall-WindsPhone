@@ -48,6 +48,8 @@ namespace weball_windowsPhone
             }
             WeBallAPI.currentUser.password = NewPasswordBox.Password;
             await WeBallAPI.updateUser();
+            if (WeBallAPI.Success == false)
+                return;
             MessageBoxResult result =
                 MessageBox.Show("Mot de passe changé!",
                     "Confirmation",

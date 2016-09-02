@@ -27,6 +27,8 @@ namespace weball_windowsPhone
             {
                 target = JsonConvert.DeserializeObject<Five>(parameter);
                 await WeBallAPI.getMatches(target._id);
+                if (WeBallAPI.Success == false)
+                    return;
                 target = WeBallAPI.FiveList.FirstOrDefault(s => s._id == target._id);
                 if (target.matchs != null)
                     target.nTotalMatchs = target.matchs.Count;
@@ -49,5 +51,6 @@ namespace weball_windowsPhone
                 NavigationService.Navigate(new Uri("/MatchTimingPage.xaml?five=" + JsonConvert.SerializeObject(five[0]), UriKind.Relative)); 
             }
         }
+
     }
 }

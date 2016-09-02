@@ -89,6 +89,8 @@ namespace weball_windowsPhone
                         else
                         {
                             await WeBallAPI.getFive(five._id);
+                            if (WeBallAPI.Success == false)
+                                return;
                             var selectedparkdata = WeBallAPI.FiveList.Where(s => s._id == five._id).ToList();
                             MessageBoxResult result =
                                 MessageBox.Show("Match créé!",
