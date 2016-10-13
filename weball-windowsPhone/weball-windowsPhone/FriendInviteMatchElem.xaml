@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="weball_windowsPhone.FriendInviteMatchElem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}" Height="105.665" Width="461">
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+        <Image Source="{ Binding user.photo }" HorizontalAlignment="Left" Height="82" VerticalAlignment="Top" Width="80" Margin="2,10,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Margin="89,34,0,0" TextWrapping="Wrap" Text="{Binding user.fullName}" VerticalAlignment="Top" Height="34" Width="233"/>
+        <Button CommandParameter="{Binding user._id}" Content="Inviter" HorizontalAlignment="Left" Margin="322,11,0,0" VerticalAlignment="Top" Width="129" Click="Button_Click"/>
+    </Grid>
+</UserControl>

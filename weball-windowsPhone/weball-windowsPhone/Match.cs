@@ -23,6 +23,14 @@ namespace weball_windowsPhone
         public string photo { get; set; }
         public string name { get; set; }
     }
+
+    public class creator
+    {
+        public string _id { get; set; }
+        public string email { get; set; }
+        public string fullName { get; set; }
+        public string photo { get; set; }
+    }
     public class Match
     {
         public string _id { get; set; }
@@ -35,7 +43,7 @@ namespace weball_windowsPhone
         public int amount { get; set; }
         public DateTime createdAt { get; set; }
         public List<Teams> teams { get; set; }
-    //    public string createdBy { get; set; }
+        public dynamic createdBy { get; set; }
      //   public string createdWith { get; set; }
         public int currentPlayers { get; set; }
         public string __v { get; set; }

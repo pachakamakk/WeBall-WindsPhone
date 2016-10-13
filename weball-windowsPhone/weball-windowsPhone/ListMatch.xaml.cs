@@ -58,5 +58,10 @@ namespace weball_windowsPhone
                 NavigationService.Navigate(new Uri("/ProfileMatchPage.xaml?match=" + JsonConvert.SerializeObject(five.matchs.FirstOrDefault(s => s._id == match._id)) + "&five=" + fiveId, UriKind.Relative));
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MatchSlotPage.xaml?matchs=" + JsonConvert.SerializeObject(matchs) + "&five=" + fiveId, UriKind.Relative));
+        }
     }
 }

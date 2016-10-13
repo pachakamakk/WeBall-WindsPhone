@@ -17,6 +17,7 @@ namespace weball_windowsPhone
             await WeBallAPI.getNotifications();
             if (WeBallAPI.Success == false)
                 return;
+            ListNotifs.ItemsSource = WeBallAPI.notifs.notifications;
             ListFriendsRequests.ItemsSource = WeBallAPI.notifs.requests;
         }
         public NotifPage()

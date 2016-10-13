@@ -17,8 +17,8 @@
 
     <Grid x:Name="LayoutRoot" Style="{StaticResource MainGridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="768"/>
+            <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contient le nom de l'application et le titre de la page-->
@@ -34,10 +34,9 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Nombre de joueurs par équipe" VerticalAlignment="Top" Margin="30,222,0,0"/>
             <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Margin="10,118,0,0" BorderThickness="0,0,0,3" SelectionBackground="#FF2B2A2A" Background="{StaticResource TransparentBrush}" BorderBrush="#BF8A7373" Foreground="White" TextChanged="NameBox_TextChanged" SelectionForeground="#FF2E2B2B" CaretBrush="{StaticResource TransparentBrush}" GotFocus="NameBox_GotFocus"/>
             <TextBox InputScope="Number" x:Name="NumberBox" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Margin="10,254,0,0" BorderThickness="0,0,0,3" SelectionBackground="#FFD13324" Background="{StaticResource TransparentBrush}" BorderBrush="#BF8A7373" SelectionForeground="{StaticResource TransparentBrush}" GotFocus="NameBox_GotFocus" Foreground="White"/>
-            <Button Content="Inviter des joueurs" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="116,349,0,0" Width="244"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Durée du match: 1h" VerticalAlignment="Top" Margin="21,449,0,0" Width="234"/>
         </Grid>
-        <local:WindowsPhoneControl1 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,667,0,0" Grid.RowSpan="2"/>
+        <local:WindowsPhoneControl1 HorizontalAlignment="Left" Margin="0,667,0,0" VerticalAlignment="Top" Height="101" Width="480"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

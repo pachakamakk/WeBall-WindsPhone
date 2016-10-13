@@ -21,11 +21,13 @@ using System.Windows;
 
 namespace weball_windowsPhone
 {
+    /* Classe principale pour l'API */
     public class WeBallAPI
     {
         private static string token = "";
         private static string baseUri = "https://api.weball.fr";
         public static User currentUser;
+        public static string selectedFive;
         public static NotifHandler notifs;
         public static User profileUser;
         public static List<Relation> relations;
@@ -135,6 +137,8 @@ namespace weball_windowsPhone
                 return null;
             }
         }
+
+        /* Route reset mot de passe */
         public static async Task resetPassword(string email)
         {
             try
@@ -179,6 +183,8 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+        
+        /* Route récupération fives */
         public static async Task getFives()
         {
             try
@@ -217,6 +223,109 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+
+        public static async Task inviteMatch(string matchId, string friendId)
+        {
+            try
+            {
+                using (HttpClient hc = new HttpClient())
+                {
+                    hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                    var method = new HttpMethod("PATCH");
+                    HttpResponseMessage msg;
+                    var keyValuePairs = new Dictionary<string, string>();
+                    keyValuePairs.Add("id", matchId);
+                    System.Diagnostics.Debug.WriteLine("firendId: " + friendId);
+                    keyValuePairs.Add("guests", "[" + friendId + "]");
+                    var content = new FormUrlEncodedContent(keyValuePairs);
+
+                    var request = new HttpRequestMessage(method, WeBallAPI.baseUri + "/matches/invit/" + matchId)
+                    {
+                        Content = new StringContent("{ \"guests\": [\"" + friendId + "\"] }", Encoding.UTF8, "application/json")
+                    };
+                    msg = await hc.SendAsync(request);
+                    if (msg.IsSuccessStatusCode)
+                    {
+                        MessageBoxResult result =
+                            MessageBox.Show("Joueur invité!",
+                                "OK",
+                         MessageBoxButton.OK);
+                        success = true;
+                    }
+                    else
+                    {
+                        MessageBoxResult result =
+                            MessageBox.Show("Erreur: " + msg.Content.ReadAsStringAsync().Result,
+                                "Erreur",
+                        MessageBoxButton.OK);
+                        success = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                success = false;
+                MessageBoxResult result =
+                    MessageBox.Show("Erreur innatendue. Réessayez ultérieurement!",
+                        "Erreur",
+                MessageBoxButton.OK);
+            }
+
+        }
+        public static async Task updateMatch(Match match, int length)
+        {
+            try
+            {
+                using (HttpClient hc = new HttpClient())
+                {
+                    hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
+                    var method = new HttpMethod("PATCH");
+                    HttpResponseMessage msg;
+                    var keyValuePairs = new Dictionary<string, string>();
+                    MatchTmp matchTmp = new MatchTmp();
+                    matchTmp.name = match.name;
+                    matchTmp.field = match.field;
+                    matchTmp.startDate = match.startDate.ToString("o").Split('+')[0];
+                    matchTmp.endDate = match.startDate.AddHours(length).ToString("o").Split('+')[0];
+                    matchTmp.maxPlayers = match.maxPlayers;
+                    keyValuePairs.Add("match", JsonConvert.SerializeObject(matchTmp));
+//                    keyValuePairs.Add("team", );
+                    var content = new FormUrlEncodedContent(keyValuePairs);
+                    var request = new HttpRequestMessage(method, WeBallAPI.baseUri + "/matches/" + match._id)
+                    {
+                        Content = content
+                    };
+                    msg = await hc.SendAsync(request);
+                    if (msg.IsSuccessStatusCode)
+                    {
+                        MessageBoxResult result =
+                            MessageBox.Show("Match modifié!",
+                                "OK",
+                         MessageBoxButton.OK);
+                        success = true;
+                    }
+                    else
+                    {
+                        MessageBoxResult result =
+                            MessageBox.Show("Erreur. Mauvaise horaire/durée? " + msg.Content.ReadAsStringAsync().Result,
+                                "Erreur",
+                        MessageBoxButton.OK);
+                        success = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                success = false;
+                MessageBoxResult result =
+                    MessageBox.Show("Erreur innatendue. Réessayez ultérieurement!",
+                        "Erreur",
+                MessageBoxButton.OK);
+            }
+        }
+
+
+        /* Route récupération notifications */
         public static async Task getNotifications()
         {
             try
@@ -255,6 +364,8 @@ namespace weball_windowsPhone
             }
 
         }
+
+        /* Route récupération relations */
         public static async Task getRelations()
         {
             try
@@ -292,6 +403,8 @@ namespace weball_windowsPhone
             }
         }
 
+        /* Route envoi requête ami */
+
         public static async Task sendRequest(string userId)
         {
             try
@@ -327,6 +440,8 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+
+        /* Route acceptation requête d'ami */
         public static async Task acceptRequest(string userId)
         {
             try
@@ -363,6 +478,8 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+
+        /* Route refus demande ami */
         public static async Task denyRequest(string userId)
         {
             try
@@ -399,6 +516,8 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+
+        /* Route supprimer ami */
         public static async Task eraseRelationship(string userId)
         {
             try
@@ -431,7 +550,7 @@ namespace weball_windowsPhone
             }
         }
 
-
+        /* Route rejoindre match */
         public static async Task joinMatch(string teamId)
         {
             try
@@ -467,6 +586,8 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+
+        /* Route ajout match */
         public static async Task addMatch(string name, DateTime start, DateTime end,
                                             int maxPlayers, string field, string[] invited = null)
         {
@@ -512,6 +633,7 @@ namespace weball_windowsPhone
             }
         }
 
+        /* Route recherche utilisateur */
         public static async Task searchUser(string name)
         {
             try
@@ -548,6 +670,7 @@ namespace weball_windowsPhone
             }
 
         }
+        /* Route détails matchs */
         public static async Task getMatch(string matchId)
         {
             try
@@ -591,6 +714,8 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+
+        /* Route récupérations matchs d'un five */
         public static async Task getMatches(string fiveId)
         {
             try
@@ -633,6 +758,8 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+
+        /* Route quitter match */
         public static async Task leaveMatch(string id)
         {
             try
@@ -667,6 +794,7 @@ namespace weball_windowsPhone
             }
         }
 
+        /* Route récupérations détails d'un five */
         public static async Task getFive(string id)
         {
             try
@@ -713,6 +841,7 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+
         public static async Task updatePos()
         {
             Geolocator geolocator = new Geolocator();
@@ -748,6 +877,8 @@ namespace weball_windowsPhone
             IsolatedStorageSettings.ApplicationSettings["LastLocation"] = coord;
             await WeBallAPI.updateUser();
         }
+
+        /* Route update profil utilisateur */
         public static async Task updateUser()
         {
             try
@@ -792,6 +923,8 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+
+        /* Route inscription */
         public static async Task register(string password, string email, string fullname,
                                         string birthday, ImageSource photo, float[] gps)
         {
@@ -834,6 +967,8 @@ namespace weball_windowsPhone
                 MessageBoxButton.OK);
             }
         }
+
+        /* Route login */
         public static async Task login(string username, string password)
         {
             try
@@ -880,6 +1015,7 @@ namespace weball_windowsPhone
             }
         }
 
+        /* Route récupérations détails utilisateur */
         public static async Task getUser(string userId)
         {
             try
@@ -921,6 +1057,7 @@ namespace weball_windowsPhone
             }
         }
 
+        /* Route récupération infos utilisateur courant */
         public static async Task me()
         {
             try

@@ -1,0 +1,61 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="weball_windowsPhone.EditMatch"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot est la grille racine où tout le contenu de la page est placé-->
+    <Grid x:Name="LayoutRoot" Style="{StaticResource MainGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <!--ContentPanel - placez tout contenu supplémentaire ici-->
+        <Grid x:Name="ContentPanel" Grid.Row="1">
+            <Grid HorizontalAlignment="Left" Height="100" Margin="0,131,0,0" VerticalAlignment="Top" Width="480">
+                <TextBlock HorizontalAlignment="Left" Margin="10,25,0,0" TextWrapping="Wrap" Text="Nom du match" VerticalAlignment="Top" Height="52"/>
+                <TextBox x:Name="MatchName" HorizontalAlignment="Left" Height="72" Margin="210,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" TextChanged="TextBox_TextChanged"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="100" Margin="0,252,0,0" VerticalAlignment="Top" Width="480">
+                <TextBlock HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174">
+            		<Run Text="Durée du match"/>
+            		<LineBreak/>
+            		<Run Text="&#x9;(1-2h)"/>
+                </TextBlock>
+                <TextBox InputScope="Number" x:Name="MatchLength" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="257" Margin="213,10,0,0" BorderThickness="0" SelectionBackground="#FFD13324" Background="{StaticResource TransparentBrush}" BorderBrush="#BF8A7373" SelectionForeground="{StaticResource TransparentBrush}" Foreground="White"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="100" Margin="0,386,0,0" VerticalAlignment="Top" Width="480">
+                <TextBlock HorizontalAlignment="Left" Margin="10,34,0,0" TextWrapping="Wrap" Text="Heure" VerticalAlignment="Top" Width="174"/>
+                <toolkit:TimePicker x:Name="MatchTime" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="329,18,0,0" Width="102"/>
+            </Grid>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="5" Margin="11,232,0,0" VerticalAlignment="Top" Width="460" RenderTransformOrigin="0.5,0.5">
+                <Border.RenderTransform>
+                    <CompositeTransform ScaleY="-1"/>
+                </Border.RenderTransform>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="5" Margin="4,366,0,0" VerticalAlignment="Top" Width="460" RenderTransformOrigin="0.5,0.5">
+                <Border.RenderTransform>
+                    <CompositeTransform ScaleY="-1"/>
+                </Border.RenderTransform>
+            </Border>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="116" Grid.RowSpan="2" VerticalAlignment="Top" Width="480" Background="#FF312A2A" Opacity="0.7">
+            <TextBlock HorizontalAlignment="Left" Margin="150,27,0,0" TextWrapping="Wrap" Text="Réservation" VerticalAlignment="Top" Height="58" Width="183" Foreground="White" FontSize="35"/>
+            <Button Content="Annuler" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,39,0,0" BorderThickness="0" Click="Button_Click_1"/>
+            <Button Content="Valider" HorizontalAlignment="Left" Margin="355,39,0,0" VerticalAlignment="Top" BorderThickness="0" Click="Button_Click"/>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

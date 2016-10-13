@@ -61,28 +61,26 @@ namespace weball_windowsPhone
                     textBlock.Text = match.teams[1].name;
                 else
                     textBlock.Text = "Unknown";
-
-                System.Diagnostics.Debug.WriteLine("Match: " + match);
             }
             if (NavigationContext.QueryString.TryGetValue("five", out parameter))
             {
                 five = WeBallAPI.FiveList.Where(s => s._id == (string)parameter).ToList()[0];
             }
+            WeBallAPI.selectedFive = five._id;
             ContentPanel.DataContext = match;
             fiveGrid.DataContext = five;
-            System.Diagnostics.Debug.WriteLine("BITE");
             DateBlock.Text = match.startDate.ToString();
-            System.Diagnostics.Debug.WriteLine("BITEEE");
             if (checkMember(match.teams[0], 0) || checkMember(match.teams[1], 1))
             {
                 QuitButton.IsEnabled = true;
                 QuitButton.Opacity = 100;
+                InviteButton.IsEnabled = true;
+                InviteButton.Opacity = 100;
                 buttonJoin1.IsEnabled = false;
                 buttonJoin1.Opacity = 0;
                 buttonJoin2.IsEnabled = false;
                 buttonJoin2.Opacity = 0;
             }
-            System.Diagnostics.Debug.WriteLine("BITZZAZ");
         }
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -152,6 +150,11 @@ namespace weball_windowsPhone
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/MatchTimingPage.xaml?five=" + JsonConvert.SerializeObject(five), UriKind.Relative)); 
+        }
+
+        private void InviteButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InviteFriendMatchPage.xaml?match=" + JsonConvert.SerializeObject(match), UriKind.Relative)); 
         }
     }
 }

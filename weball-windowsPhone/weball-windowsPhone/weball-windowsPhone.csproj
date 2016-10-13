@@ -100,6 +100,9 @@
     <Compile Include="CreateMatchPage.xaml.cs">
       <DependentUpon>CreateMatchPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditMatch.xaml.cs">
+      <DependentUpon>EditMatch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Field.cs" />
     <Compile Include="FiveListPage.xaml.cs">
       <DependentUpon>FiveListPage.xaml</DependentUpon>
@@ -110,6 +113,9 @@
     <Compile Include="ForgotPasswordPage.xaml.cs">
       <DependentUpon>ForgotPasswordPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FriendInviteMatchElem.xaml.cs">
+      <DependentUpon>FriendInviteMatchElem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FriendListElem.xaml.cs">
       <DependentUpon>FriendListElem.xaml</DependentUpon>
     </Compile>
@@ -119,6 +125,9 @@
     <Compile Include="FriendSearchControl.xaml.cs">
       <DependentUpon>FriendSearchControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InviteFriendMatchPage.xaml.cs">
+      <DependentUpon>InviteFriendMatchPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListMatch.xaml.cs">
       <DependentUpon>ListMatch.xaml</DependentUpon>
     </Compile>
@@ -126,6 +135,9 @@
       <DependentUpon>MapFivePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Match.cs" />
+    <Compile Include="MatchListControl.xaml.cs">
+      <DependentUpon>MatchListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MatchSlotPage.xaml.cs">
       <DependentUpon>MatchSlotPage.xaml</DependentUpon>
     </Compile>
@@ -204,6 +216,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditMatch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FiveListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,6 +232,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FriendInviteMatchElem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FriendListElem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -225,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FriendSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InviteFriendMatchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -241,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MapFivePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MatchListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -346,6 +374,7 @@
     <Content Include="Assets\elements\notif%403x.png" />
     <Content Include="Assets\elements\notif.png" />
     <Content Include="Assets\elements\password.png" />
+    <Content Include="Assets\elements\people.png" />
     <Content Include="Assets\elements\Pins.png" />
     <Content Include="Assets\elements\Search Loupe.png" />
     <Content Include="Assets\elements\User.png" />

@@ -16,31 +16,24 @@
 
     <Grid x:Name="LayoutRoot" Style="{StaticResource MainGridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="82"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1">
-            <ListBox x:Name="ListMatchs" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="499" VerticalAlignment="Top" Width="480" Margin="0,119,0,0" IsSynchronizedWithCurrentItem="False" IsTabStop="False" DoubleTap="ListMatchs_DoubleTap">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,36,0,0">
+            <ListBox x:Name="ListMatchs" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="549" VerticalAlignment="Top" Width="480" IsSynchronizedWithCurrentItem="False" IsTabStop="False" DoubleTap="ListMatchs_DoubleTap">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <Grid Width="480" Height="300">
-                                <Grid Height="226" VerticalAlignment="Top" Width="340">
-                                    <TextBlock x:Name="TitleBox" HorizontalAlignment="Left" Margin="69,10,0,0" TextWrapping="Wrap" Text="{Binding name, FallbackValue='Unknown'}" VerticalAlignment="Top" Width="201"/>
-                                    <TextBlock x:Name="TeamABox" HorizontalAlignment="Left" Margin="10,93,0,0" TextWrapping="Wrap" Text="{Binding teams[0].name, FallbackValue='Unknown' }" VerticalAlignment="Top" BindingValidationError="BindingError"/>
-                                    <TextBlock x:Name="TeamBBox" HorizontalAlignment="Left" Margin="197,90,0,0" TextWrapping="Wrap" Text="{Binding teams[1].name, FallbackValue='Unknown' }" VerticalAlignment="Top" BindingValidationError="BindingError"/>
-                                    <TextBlock HorizontalAlignment="Left" Margin="128,68,0,0" TextWrapping="Wrap" Text="VS" VerticalAlignment="Top" Width="33"/>
-                                    <TextBlock x:Name="teamACount" HorizontalAlignment="Left" Margin="35,61,0,0" TextWrapping="Wrap" Text="{Binding teams[0].currentPlayers, FallbackValue='Unknown' }" VerticalAlignment="Top" BindingValidationError="BindingError"/>
-                                    <TextBlock x:Name="teamBCount" HorizontalAlignment="Left" Margin="225,61,0,0" TextWrapping="Wrap" Text="{Binding teams[1].currentPlayers, FallbackValue='Unknown' }" VerticalAlignment="Top" Height="22" BindingValidationError="BindingError"/>
-                                </Grid>
-                            </Grid>
+                            <local:MatchListControl />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <local:WindowsPhoneControl1 HorizontalAlignment="Left" Margin="0,667,0,0" VerticalAlignment="Top"/>
+            <local:WindowsPhoneControl1 HorizontalAlignment="Left" Margin="0,549,0,0" VerticalAlignment="Top"/>
         </Grid>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" Click="Button_Click" Height="72" Width="119"/>
+        <TextBlock HorizontalAlignment="Left" Margin="175,10,0,0" TextWrapping="Wrap" Text="Matchs" VerticalAlignment="Top" Height="62" Width="237" FontSize="40"/>
     </Grid>
 
 </phone:PhoneApplicationPage>
