@@ -32,6 +32,7 @@ namespace weball_windowsPhone
         public static User profileUser;
         public static List<Relation> relations;
         public static List<littleUser> search;
+        public static int returnedIndex;
         private static List<Five> fiveList = null;
         public static List<Five> FiveList
         {
@@ -119,7 +120,6 @@ namespace weball_windowsPhone
 
                 foreach (var item in array)
                 {
-                    System.Diagnostics.Debug.WriteLine("Item: " + item.ToString());
                     try
                     {
                         objectsList.Add(item.ToObject<T>());
@@ -196,15 +196,11 @@ namespace weball_windowsPhone
                     Uri connectionUri = new Uri(WeBallAPI.baseUri + "/five?lgt=" + /* currentUser.gps[0].ToString().Replace(',','.') */ "12" +
                                                 "&lat=" + /*currentUser.gps[1].ToString().Replace(',', '.')*/ "12");
                     hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
-                    System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
                     msg = await hc.GetAsync(connectionUri);
-                    System.Diagnostics.Debug.WriteLine("step 2");
                     if (msg.IsSuccessStatusCode)
                     {
                         success = true;
                         string response = msg.Content.ReadAsStringAsync().Result;
-                        System.Diagnostics.Debug.WriteLine("step 3");
-                        //System.Diagnostics.Debug.WriteLine("return: " + response);
                         WeBallAPI.fiveList = DeserializeToList<Five>(response);
                     }
                     else
@@ -235,7 +231,6 @@ namespace weball_windowsPhone
                     HttpResponseMessage msg;
                     var keyValuePairs = new Dictionary<string, string>();
                     keyValuePairs.Add("id", matchId);
-                    System.Diagnostics.Debug.WriteLine("firendId: " + friendId);
                     keyValuePairs.Add("guests", "[" + friendId + "]");
                     var content = new FormUrlEncodedContent(keyValuePairs);
 
@@ -336,14 +331,11 @@ namespace weball_windowsPhone
                     HttpResponseMessage msg;
                     Uri connectionUri = new Uri(WeBallAPI.baseUri + "/notifications");
                     hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
-                    System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
                     msg = await hc.GetAsync(connectionUri);
                     if (msg.IsSuccessStatusCode)
                     {
                         success = true;
                         string response = msg.Content.ReadAsStringAsync().Result;
-                        System.Diagnostics.Debug.WriteLine("step 3");
-                        System.Diagnostics.Debug.WriteLine("return: " + response);
                         JToken parsedResponse = JObject.Parse(response);
                         WeBallAPI.notifs = parsedResponse.ToObject<NotifHandler>();
                     }
@@ -376,14 +368,11 @@ namespace weball_windowsPhone
                     HttpResponseMessage msg;
                     Uri connectionUri = new Uri(WeBallAPI.baseUri + "/relationship/" + WeBallAPI.currentUser._id);
                     hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
-                    System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
                     msg = await hc.GetAsync(connectionUri);
                     if (msg.IsSuccessStatusCode)
                     {
                         success = true;
                         string response = msg.Content.ReadAsStringAsync().Result;
-                        System.Diagnostics.Debug.WriteLine("step 3");
-                        System.Diagnostics.Debug.WriteLine("return: " + response);
                         WeBallAPI.relations = DeserializeToList<Relation>(response);
                     }
                     else
@@ -455,7 +444,6 @@ namespace weball_windowsPhone
                     msg = await hc.SendAsync(request);
                     if (msg.IsSuccessStatusCode)
                     {
-                        System.Diagnostics.Debug.WriteLine("Request sent!");
                         MessageBoxResult result =
                             MessageBox.Show("Requête acceptée!",
                                 "Requete",
@@ -493,7 +481,6 @@ namespace weball_windowsPhone
                     msg = await hc.SendAsync(request);
                     if (msg.IsSuccessStatusCode)
                     {
-                        System.Diagnostics.Debug.WriteLine("Request denied!");
                         MessageBoxResult result =
                             MessageBox.Show("Requête refusée!",
                                 "Erreur",
@@ -561,13 +548,11 @@ namespace weball_windowsPhone
                     var method = new HttpMethod("PATCH");
                     var request = new HttpRequestMessage(method, WeBallAPI.baseUri + "/matches/join/" + teamId);
                     hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
-                    System.Diagnostics.Debug.WriteLine("Sending: " + request.RequestUri);
                     HttpResponseMessage msg;
                     msg = await hc.SendAsync(request);
                     if (msg.IsSuccessStatusCode)
                     {
                         string response = msg.Content.ReadAsStringAsync().Result;
-                        System.Diagnostics.Debug.WriteLine("Match joined! Received: " + response);
                         success = true;
                     }
                     else
@@ -608,11 +593,9 @@ namespace weball_windowsPhone
                     Uri connectionUri = new Uri(WeBallAPI.baseUri + "/matches/");
                     string parsed = "{ \"match\" :" + JsonConvert.SerializeObject(match) + "}";
                     msg = await hc.PostAsync(connectionUri, new StringContent(parsed, Encoding.UTF8, "application/json"));
-                    System.Diagnostics.Debug.WriteLine("Sending: " + parsed);
                     if (msg.IsSuccessStatusCode)
                     {
                         string response = msg.Content.ReadAsStringAsync().Result;
-                        System.Diagnostics.Debug.WriteLine("Matches created! Received: " + response);
                         success = true;
                         JToken parsedResponse = JObject.Parse(response);
                     }
@@ -644,13 +627,11 @@ namespace weball_windowsPhone
                     hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
                     Uri connectionUri = new Uri(WeBallAPI.baseUri + "/users/search/" + name);
                     hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
-                    System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
                     msg = await hc.GetAsync(connectionUri);
                     if (msg.IsSuccessStatusCode)
                     {
                         success = true;
                         string response = msg.Content.ReadAsStringAsync().Result;
-                        System.Diagnostics.Debug.WriteLine("Result: " + response);
                         WeBallAPI.search = DeserializeToList<littleUser>(response);
                     }
                     else
@@ -671,7 +652,7 @@ namespace weball_windowsPhone
 
         }
         /* Route détails matchs */
-        public static async Task getMatch(string matchId)
+        public static async Task getMatch(string matchId, int mode = 0)
         {
             try
             {
@@ -681,22 +662,32 @@ namespace weball_windowsPhone
                     hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
                     Uri connectionUri = new Uri(WeBallAPI.baseUri + "/matches/" + matchId);
                     hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
-                    System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
                     msg = await hc.GetAsync(connectionUri);
                     if (msg.IsSuccessStatusCode)
                     {
                         success = true;
                         string response = msg.Content.ReadAsStringAsync().Result;
-                        if (response.Length > 2)
-                            System.Diagnostics.Debug.WriteLine("Match received!\n" + response);
+                        if (response.Length <= 4)
+                        {
+                            success = false;
+                            MessageBoxResult result =
+                                MessageBox.Show("Match non trouvé!",
+                                    "Erreur",
+                            MessageBoxButton.OK);
+                            return;
+                        }
                         JToken parsedResponse = JObject.Parse(response);
-                        var match = parsedResponse.ToObject<Match>();
+                        Match match = parsedResponse.ToObject<Match>();
+                        if (mode == 1)
+                            await getMatches(match.five._id);
                         var five = WeBallAPI.fiveList.FirstOrDefault(s => s._id == match.five._id);
                         var index = WeBallAPI.fiveList.IndexOf(five);
                         var oldMatch = five.matchs.FirstOrDefault(s => s._id == matchId);
                         var indexMatch = five.matchs.IndexOf(oldMatch);
+                        match.createdBy = oldMatch.createdBy;
                         five.matchs[indexMatch] = match;
                         WeBallAPI.FiveList[index] = five;
+                        returnedIndex = index;
                     }
                     else
                     {
@@ -729,14 +720,11 @@ namespace weball_windowsPhone
                     string query = "?sort=startDate" + dateParam;
                     Uri connectionUri = new Uri(WeBallAPI.baseUri + "/matches/five/" + fiveId + query);
                     hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
-                    System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
                     msg = await hc.GetAsync(connectionUri);
                     if (msg.IsSuccessStatusCode)
                     {
                         success = true;
                         string response = msg.Content.ReadAsStringAsync().Result;
-                        if (response.Length > 2)
-                            System.Diagnostics.Debug.WriteLine("Matches received!");
                         var five = WeBallAPI.fiveList.FirstOrDefault(s => s._id == fiveId);
                         var index = WeBallAPI.fiveList.IndexOf(five);
                         var newFive = JToken.Parse(response);
@@ -805,14 +793,11 @@ namespace weball_windowsPhone
                     hc.DefaultRequestHeaders.IfModifiedSince = new DateTimeOffset(DateTime.Now);
                     Uri connectionUri = new Uri(WeBallAPI.baseUri + "/five/" + id);
                     hc.DefaultRequestHeaders.Add("x-access-token", WeBallAPI.token);
-                    System.Diagnostics.Debug.WriteLine("URL: " + connectionUri);
                     msg = await hc.GetAsync(connectionUri);
                     if (msg.IsSuccessStatusCode)
                     {
                         success = true;
                         string response = msg.Content.ReadAsStringAsync().Result;
-                        System.Diagnostics.Debug.WriteLine("step 3 getfive");
-                        System.Diagnostics.Debug.WriteLine("return: " + response);
                         var five = WeBallAPI.fiveList.FirstOrDefault(s => s._id == id);
                         var index = WeBallAPI.fiveList.IndexOf(five);
                         var newFive = JToken.Parse(response);
@@ -945,7 +930,6 @@ namespace weball_windowsPhone
                     {
                         WeBallAPI.currentUser = newUser;
                         success = true;
-                        System.Diagnostics.Debug.WriteLine("Success");
                     }
                     else
                     {
@@ -974,7 +958,6 @@ namespace weball_windowsPhone
             try
             {
                 WeBallAPI.username = username;
-                System.Diagnostics.Debug.WriteLine("Step 1");
                 using (HttpClient hc = new HttpClient())
                 {
                     var keyValuePairs = new Dictionary<string, string>();
@@ -983,7 +966,6 @@ namespace weball_windowsPhone
                     var content = new FormUrlEncodedContent(keyValuePairs);
                     HttpResponseMessage msg;
                     Uri connectionUri = new Uri(WeBallAPI.baseUri + "/login/users");
-                    System.Diagnostics.Debug.WriteLine("URI: " + connectionUri);
                     msg = await hc.PostAsync(connectionUri, content);
                     if (msg.IsSuccessStatusCode)
                     {
@@ -992,7 +974,6 @@ namespace weball_windowsPhone
                         WeBallAPI.password = password;
                         JToken parsedResponse = JObject.Parse(response);
                         WeBallAPI.token = (string)parsedResponse.SelectToken("token");
-                        System.Diagnostics.Debug.WriteLine("Token: " + WeBallAPI.token);
                     }
                     else
                     {
@@ -1038,7 +1019,6 @@ namespace weball_windowsPhone
                         test[0] = 0f;
                         test[1] = 0f;
                         WeBallAPI.profileUser = parsedResponse.ToObject<User>();
-                        System.Diagnostics.Debug.WriteLine("return: " + response);
                     }
                     else
                     {
@@ -1080,7 +1060,6 @@ namespace weball_windowsPhone
                         test[1] = 0f;
                         WeBallAPI.currentUser = parsedResponse.ToObject<User>();
                         WeBallAPI.currentUser.password = WeBallAPI.password;
-                        System.Diagnostics.Debug.WriteLine("return: " + response);
                     }
                     else
                     {

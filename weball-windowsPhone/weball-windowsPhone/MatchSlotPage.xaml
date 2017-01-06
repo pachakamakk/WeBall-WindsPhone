@@ -23,7 +23,7 @@
         <!--TitlePanel contient le nom de l'application et le titre de la page-->
         <!--ContentPanel - placez tout contenu supplémentaire ici-->
         <Grid x:Name="GridFiveImage" Margin="0,0,0,101" Style="{StaticResource MainGridStyle}">
-            <Image x:Name="FiveImage" HorizontalAlignment="Left" Height="121" VerticalAlignment="Top" Width="480" Source="{Binding photo}" Stretch="Fill" Margin="0,-7,-20,0"/>
+            <Image x:Name="FiveImage" HorizontalAlignment="Left" Height="98" VerticalAlignment="Top" Width="480" Source="{Binding photo}" Stretch="Fill" Margin="0,-7,-20,0"/>
             <TextBlock Style="{StaticResource PhoneTextTitle1Style}" Margin="169,29,171,580" FontSize="30" Text="Créneaux"/>
             <ListBox x:Name="ListTimings" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="471" VerticalAlignment="Top" Width="470" Margin="0,119,0,0" IsSynchronizedWithCurrentItem="False" IsTabStop="False">
                 <ListBox.ItemTemplate>

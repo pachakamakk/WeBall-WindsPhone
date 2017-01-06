@@ -1,0 +1,60 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="weball_windowsPhone.NotificationsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:local="clr-namespace:weball_windowsPhone"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot est la grille racine où tout le contenu de la page est placé-->
+    <Grid x:Name="LayoutRoot" Style="{StaticResource MainGridStyle}">
+        <!--Contrôle Pivot-->
+        <phone:Pivot Title="Notifications" Margin="0,0,0,106">
+            <!--Élément un de tableau croisé dynamique-->
+            <phone:PivotItem Header="Notifs" Margin="0,28,0,0">
+                <Grid>
+                    <ListBox x:Name="ListNotifs" HorizontalAlignment="Left" Height="497" VerticalAlignment="Top" Width="480" IsSynchronizedWithCurrentItem="False" IsTabStop="False" RenderTransformOrigin="0.5,0.5">
+                        <ListBox.RenderTransform>
+                            <CompositeTransform/>
+                        </ListBox.RenderTransform>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <local:NotifControl />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </phone:PivotItem>
+
+            <!--Élément deux de tableau croisé dynamique-->
+            <phone:PivotItem Header="Social">
+                <Grid>
+                    <ListBox x:Name="ListFriendsRequests" HorizontalAlignment="Left" Height="603" VerticalAlignment="Top" Width="480" IsSynchronizedWithCurrentItem="False" IsTabStop="False" RenderTransformOrigin="0.5,0.5" Margin="-24,0,0,0">
+                        <ListBox.RenderTransform>
+                            <CompositeTransform/>
+                        </ListBox.RenderTransform>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <local:FriendRequestControl />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </phone:PivotItem>
+        </phone:Pivot>
+        <local:WindowsPhoneControl1 Margin="0,667,0,0"/>
+    </Grid>
+
+</phone:PhoneApplicationPage>

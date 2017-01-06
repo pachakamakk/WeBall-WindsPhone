@@ -96,7 +96,6 @@ C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weba
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ProfileMatchPage.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FriendRequestControl.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\NotifControl.g.cs
-C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\NotifsPage.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FriendListElem.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\WePage.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\ParamProfilePage.g.cs
@@ -109,3 +108,5 @@ C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weba
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\EditMatch.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FriendInviteMatchElem.g.cs
 C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\InviteFriendMatchPage.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\FiveDisplayControl.g.cs
+C:\Users\norman_e\documents\visual studio 2013\Projects\weball-windowsPhone\weball-windowsPhone\obj\Debug\NotificationsPage.g.cs

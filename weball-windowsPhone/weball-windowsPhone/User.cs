@@ -26,6 +26,13 @@ namespace weball_windowsPhone
             public int nRelations { get; set; }
             public int nRequests { get; set; }
         }
+
+        public class relationShip
+        {
+            public int nRelations { get; set; }
+            public int isRelation { get; set; }
+        }
+        public relationShip relationStatus { get; set; }
         public relations _relationShip { get; set; }
         public statMatch _nMatches { get; set; }
 

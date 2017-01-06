@@ -39,7 +39,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Grid x:Name="TitleGrid" HorizontalAlignment="Left" Height="127" Margin="1,0,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="479">
+        <Grid x:Name="TitleGrid" HorizontalAlignment="Left" Height="98" Margin="1,0,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="479">
             <Grid.Background>
                 <SolidColorBrush Color="#33C8A8A8"/>
             </Grid.Background>

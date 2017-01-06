@@ -10,16 +10,11 @@ using Microsoft.Phone.Shell;
 
 namespace weball_windowsPhone
 {
-    public partial class ParamProfilePage : PhoneApplicationPage
+    public partial class FiveDisplayControl : UserControl
     {
-        public ParamProfilePage()
+        public FiveDisplayControl()
         {
             InitializeComponent();
-        }
-
-        private void ParamsProfileControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

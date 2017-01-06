@@ -24,7 +24,7 @@
 
         <Grid x:Name="FiveGrid" HorizontalAlignment="Left" Height="276" VerticalAlignment="Top" Width="480" Margin="-10,0,0,0" Grid.RowSpan="2">
             <Image Source="{Binding photo}" HorizontalAlignment="Left" Height="276" VerticalAlignment="Top" Width="480" Stretch="Fill" Opacity="0.7"/>
-            <TextBlock x:Name="NameBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding name}" VerticalAlignment="Top" Margin="151,35,0,0" Height="124" Width="248" FontSize="40"/>
+            <TextBlock TextAlignment="Center" x:Name="NameBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding name}" VerticalAlignment="Top" Margin="126,39,0,0" Height="124" Width="248" FontSize="40"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,228,0,0" Width="190" Text="MATCHS ORGANISÉS&#x9;" Height="38"/>
             <Button Content="Réserver" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="323,188,0,0" Width="147" Click="Button_Click_1" BorderThickness="0" Background="#FF2AA028" Height="69" Opacity="0.8"/>
             <TextBlock x:Name="TotalCount" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="30,188,0,0" Text="{Binding nTotalMatchs}" Height="33" Width="132"/>

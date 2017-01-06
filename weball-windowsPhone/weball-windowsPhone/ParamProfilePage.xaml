@@ -24,7 +24,7 @@
         <!--ContentPanel - placez tout contenu supplémentaire ici-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,3,0,106">
             <StackPanel Margin="0,0,0,33">
-            <local:ParamsProfileControl HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <local:ParamsProfileControl HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="ParamsProfileControl_Loaded"/>
             </StackPanel>
         </Grid>
         <local:WindowsPhoneControl1 HorizontalAlignment="Left" Margin="0,667,0,0" Grid.Row="1" VerticalAlignment="Top"/>

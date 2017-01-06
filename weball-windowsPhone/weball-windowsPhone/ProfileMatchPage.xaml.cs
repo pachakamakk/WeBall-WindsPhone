@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Newtonsoft.Json;
+using System.Windows.Media;
 
 namespace weball_windowsPhone
 {
@@ -70,6 +71,19 @@ namespace weball_windowsPhone
             ContentPanel.DataContext = match;
             fiveGrid.DataContext = five;
             DateBlock.Text = match.startDate.ToString();
+            TeamACount.Text = match.teams[0].currentPlayers.ToString();
+            TeamBCount.Text = match.teams[1].currentPlayers.ToString();
+            int players = match.maxPlayers - (match.teams[0].currentPlayers + match.teams[1].currentPlayers);
+            if (players > 0)
+            {
+                PlayerCountBox.Text = "Plus que " + players + " joueurs pour confirmer";
+                PlayerCountBox.Foreground = new SolidColorBrush(Colors.Orange);
+            }
+            else
+            {
+                PlayerCountBox.Text = "CONFIRMER";
+                PlayerCountBox.Foreground = new SolidColorBrush(Colors.Green);
+            }
             if (checkMember(match.teams[0], 0) || checkMember(match.teams[1], 1))
             {
                 QuitButton.IsEnabled = true;
@@ -147,14 +161,15 @@ namespace weball_windowsPhone
                 NavigationService.Navigate(new Uri("/ProfilePage.xaml?user=" + id, UriKind.Relative));
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/MatchTimingPage.xaml?five=" + JsonConvert.SerializeObject(five), UriKind.Relative)); 
-        }
 
         private void InviteButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/InviteFriendMatchPage.xaml?match=" + JsonConvert.SerializeObject(match), UriKind.Relative)); 
+        }
+
+        private void Button_Click_2(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MatchTimingPage.xaml?five=" + JsonConvert.SerializeObject(five), UriKind.Relative)); 
         }
     }
 }

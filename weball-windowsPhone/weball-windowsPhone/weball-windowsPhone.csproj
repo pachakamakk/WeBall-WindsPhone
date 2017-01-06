@@ -104,6 +104,9 @@
       <DependentUpon>EditMatch.xaml</DependentUpon>
     </Compile>
     <Compile Include="Field.cs" />
+    <Compile Include="FiveDisplayControl.xaml.cs">
+      <DependentUpon>FiveDisplayControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FiveListPage.xaml.cs">
       <DependentUpon>FiveListPage.xaml</DependentUpon>
     </Compile>
@@ -148,8 +151,8 @@
       <DependentUpon>NotifControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notification.cs" />
-    <Compile Include="NotifsPage.xaml.cs">
-      <DependentUpon>NotifsPage.xaml</DependentUpon>
+    <Compile Include="NotificationsPage.xaml.cs">
+      <DependentUpon>NotificationsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ParamProfilePage.xaml.cs">
       <DependentUpon>ParamProfilePage.xaml</DependentUpon>
@@ -220,6 +223,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FiveDisplayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FiveListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -284,7 +291,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NotifsPage.xaml">
+    <Page Include="NotificationsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -357,6 +364,7 @@
     <Content Include="Assets\elements\Add Photo.png" />
     <Content Include="Assets\elements\Add Photo.svg" />
     <Content Include="Assets\elements\capa1%403x.png" />
+    <Content Include="Assets\elements\combinedShape.png" />
     <Content Include="Assets\elements\Facebook.png" />
     <Content Include="Assets\elements\favourites.png" />
     <Content Include="Assets\elements\Feed.png" />
@@ -381,6 +389,7 @@
     <Content Include="Assets\elements\username.png" />
     <Content Include="Assets\elements\Validation.png" />
     <Content Include="Assets\icon validation.png" />
+    <Content Include="Assets\localisation.png" />
     <Content Include="Assets\logo-facebook.png" />
     <Content Include="Assets\logo-google+.png" />
     <Content Include="Assets\logo-weball.png" />

@@ -6,24 +6,22 @@
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}" d:DesignWidth="480" Height="178">
+    Foreground="{StaticResource PhoneForegroundBrush}" Height="178" Width="480">
 
     <Grid x:Name="LayoutRoot" Margin="0,0,-10,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="253*"/>
-            <ColumnDefinition Width="237*"/>
-        </Grid.ColumnDefinitions>
         <Grid.Background>
             <SolidColorBrush Color="{StaticResource PhoneChromeColor}"/>
         </Grid.Background>
-        <TextBlock TextAlignment="Center" x:Name="TitleBox" Margin="124,141,0,0" Text="{Binding name, FallbackValue='Unknown'}" VerticalAlignment="Top" Width="334" TextWrapping="Wrap" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-        <TextBlock TextAlignment="Center" x:Name="TeamABox" HorizontalAlignment="Left" Margin="0,56,0,0" TextWrapping="Wrap" Text="{Binding teams[0].name, FallbackValue='Unknown' }" VerticalAlignment="Top" Width="166"/>
-        <TextBlock TextAlignment="Center" x:Name="TeamBBox" HorizontalAlignment="Left" Margin="54.25,56,0,0" TextWrapping="Wrap" Text="{Binding teams[1].name, FallbackValue='Unknown' }" VerticalAlignment="Top" Width="163" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="225,51,0,0" TextWrapping="Wrap" Text="VS" VerticalAlignment="Top" Width="33" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="teamACount" HorizontalAlignment="Left" Margin="81,19,0,0" TextWrapping="Wrap" Text="{Binding teams[0].currentPlayers, FallbackValue='?' }" VerticalAlignment="Top" Width="24"/>
-        <TextBlock x:Name="teamBCount" HorizontalAlignment="Left" Margin="153.25,19,0,0" TextWrapping="Wrap" Text="{Binding teams[1].currentPlayers, FallbackValue='?' }" VerticalAlignment="Top" Height="22" Width="22" Grid.Column="1"/>
-        <Image HorizontalAlignment="Left" Height="31" Margin="50,15,0,0" VerticalAlignment="Top" Width="26" Source="/Assets/elements/people.png"/>
-        <Image HorizontalAlignment="Left" Height="31" Margin="122.25,15,0,0" VerticalAlignment="Top" Width="26" Source="/Assets/elements/people.png" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,102,0,0" TextWrapping="Wrap" Text="{Binding createdBy.fullName}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TitleBox" Margin="81,141,0,0" Text="{Binding name, FallbackValue='Unknown'}" VerticalAlignment="Top" Width="334" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+        <TextBlock TextAlignment="Center" x:Name="TeamABox" HorizontalAlignment="Left" Margin="31,51,0,0" TextWrapping="Wrap" Text="{Binding teams[0].name, FallbackValue='Unknown' }" VerticalAlignment="Top" Width="166"/>
+        <TextBlock TextAlignment="Center" x:Name="TeamBBox" HorizontalAlignment="Left" Margin="284,51,0,0" TextWrapping="Wrap" Text="{Binding teams[1].name, FallbackValue='Unknown' }" VerticalAlignment="Top" Width="163"/>
+        <TextBlock HorizontalAlignment="Left" Margin="225,51,0,0" TextWrapping="Wrap" Text="VS" VerticalAlignment="Top" Width="33"/>
+        <TextBlock x:Name="teamACount" HorizontalAlignment="Left" Margin="128,13,0,0" TextWrapping="Wrap" Text="{Binding teams[0].currentPlayers, FallbackValue='?' }" VerticalAlignment="Top" Width="24"/>
+        <TextBlock x:Name="teamBCount" HorizontalAlignment="Left" Margin="379,18,0,0" TextWrapping="Wrap" Text="{Binding teams[1].currentPlayers, FallbackValue='?' }" VerticalAlignment="Top" Height="22" Width="22"/>
+        <Image HorizontalAlignment="Left" Height="31" Margin="97,10,0,0" VerticalAlignment="Top" Width="26" Source="/Assets/elements/people.png"/>
+        <Image HorizontalAlignment="Left" Height="31" Margin="348,15,0,0" VerticalAlignment="Top" Width="26" Source="/Assets/elements/people.png"/>
+        <TextBlock HorizontalAlignment="Left" Margin="81,97,0,0" TextWrapping="Wrap" Text="{Binding createdBy}" VerticalAlignment="Top" Loaded="TextBlock_Loaded" Height="34" Width="334"/>
+        <Image x:Name="ImageCreator" HorizontalAlignment="Left" Height="66" Margin="10,102,0,0" VerticalAlignment="Top" Width="66"/>
+        <Rectangle Fill="#FF2CFF2C" HorizontalAlignment="Left" Height="5" Margin="76,131,0,0" Stroke="Black" VerticalAlignment="Top" Width="404"/>
     </Grid>
 </UserControl>

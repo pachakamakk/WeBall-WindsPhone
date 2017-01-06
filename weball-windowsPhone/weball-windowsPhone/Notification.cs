@@ -16,7 +16,7 @@ namespace weball_windowsPhone
     {
         public string _id { get; set; }
         public string type { get; set; }
-        public string contentId { get; set; }
+        public string content { get; set; }
         public littleUser from { get; set; }
         public string date { get; set; }
     }

@@ -26,11 +26,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <Grid Width="480">
-                                <Image Height="231" Width="480" Source="{Binding photo}" Stretch="Fill" Opacity="0.6"/>
-                                <TextBlock Height="160" FontSize="40" Width="300" Text="{Binding name}"/>
-                                <TextBlock Height="160" FontSize="10" Width="300" Text="{Binding _id}" Opacity="0"/>
-                            </Grid>
+                            <local:FiveDisplayControl />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

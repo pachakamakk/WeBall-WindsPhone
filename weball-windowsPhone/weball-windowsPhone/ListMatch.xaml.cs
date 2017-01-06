@@ -47,14 +47,17 @@ namespace weball_windowsPhone
         private async void ListMatchs_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Match match;
+            creator creator;
 
             match = (Match)(((ListBox)sender).SelectedItem);
             if (match != null)
             {
+//                creator = match.createdBy;
                 await WeBallAPI.getMatch(match._id);
                 if (WeBallAPI.Success == false)
                     return;
                 var five = WeBallAPI.FiveList.FirstOrDefault(s => s._id == fiveId);
+            
                 NavigationService.Navigate(new Uri("/ProfileMatchPage.xaml?match=" + JsonConvert.SerializeObject(five.matchs.FirstOrDefault(s => s._id == match._id)) + "&five=" + fiveId, UriKind.Relative));
             }
         }

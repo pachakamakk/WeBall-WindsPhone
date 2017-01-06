@@ -32,7 +32,7 @@
                     <ColumnDefinition Width="273*"/>
                     <ColumnDefinition Width="197*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock TextAlignment="Center" x:Name="FirstNamePrompt" TextWrapping="Wrap" FontSize="30" Margin="114,159,107,100" Grid.ColumnSpan="2">
+                <TextBlock TextAlignment="Center" x:Name="FirstNamePrompt" TextWrapping="Wrap" FontSize="30" Margin="63,159,62,100" Grid.ColumnSpan="2">
             		<Run Text="chargement..."/>
                 </TextBlock>
                 <Image x:Name="ProfileImage" Source="{Binding photo}" Margin="165,34,177,208" Grid.ColumnSpan="2"/>
@@ -40,11 +40,13 @@
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="64,266,0,0" TextWrapping="Wrap" Text="TEAMMATES" VerticalAlignment="Top"/>
                 <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="41,298,0,0" TextWrapping="Wrap" Text="{Binding _nMatches.total}" VerticalAlignment="Top" Height="31" Width="99"/>
                 <TextBlock TextAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Margin="82,303,0,0" TextWrapping="Wrap" Text="{Binding _relationShip.nRelations}" VerticalAlignment="Top" Height="26" Width="70"/>
-                <Button x:Name="addFriend" Grid.Column="1" HorizontalAlignment="Left" Margin="49,79,0,0" VerticalAlignment="Top" Width="127" BorderThickness="0" Opacity="0" IsEnabled="False" Click="addFriend_Click">
-                    <Image HorizontalAlignment="Left" Height="57" VerticalAlignment="Top" Width="85" Source="/Assets/create.png"/>
-                </Button>
                 <Image HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="41" Source="/Assets/settings.png" Margin="12,13,0,0" Tap="Image_Tap"/>
-                <Image x:Name="searchImage" HorizontalAlignment="Left" Height="45" Margin="117,13,0,0" VerticalAlignment="Top" Width="59" Source="/Assets/elements/Search Loupe.png" Tap="goSearch" Grid.Column="1"/>
+                <Image x:Name="searchImage" HorizontalAlignment="Left" Height="31" Margin="134,13,0,0" VerticalAlignment="Top" Width="35" Source="/Assets/elements/Search Loupe.png" Tap="goSearch" Grid.Column="1"/>
+                <Grid x:Name="GridAdd" Grid.Column="1" HorizontalAlignment="Left" Height="92" Margin="44,79,0,0" VerticalAlignment="Top" Width="132">
+                    <Button x:Name="addFriend" HorizontalAlignment="Left" VerticalAlignment="Top" Width="127" BorderThickness="0" IsEnabled="False" Click="addFriend_Click" Opacity="0">
+                        <Image HorizontalAlignment="Left" Height="57" VerticalAlignment="Top" Width="85" Source="/Assets/create.png"/>
+                    </Button>
+                </Grid>
             </Grid>
             <Grid Height="209">
                 <TextBlock HorizontalAlignment="Left" Margin="24,28,0,0" TextWrapping="Wrap" Text="Matchs joués:" VerticalAlignment="Top"/>

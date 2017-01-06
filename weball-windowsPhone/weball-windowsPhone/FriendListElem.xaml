@@ -14,6 +14,6 @@
         <Button CommandParameter="{Binding user._id}" HorizontalAlignment="Left" Margin="392,10,0,0" VerticalAlignment="Top" BorderThickness="0" Click="Image_Tap">
             <Image HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="44" Source="/Assets/close47.png"/>
         </Button>
-        <Button CommandParameter="{Binding user._id}" Content="Button" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Opacity="0" Width="245" Height="77" Click="Button_Click"/>
+        <Button CommandParameter="{Binding user._id}" Content="Button" HorizontalAlignment="Left" Margin="119,10,0,0" VerticalAlignment="Top" Opacity="0" Width="258" Height="77" Click="Button_Click"/>
     </Grid>
 </UserControl>

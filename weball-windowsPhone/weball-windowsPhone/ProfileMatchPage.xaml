@@ -44,11 +44,14 @@
         <!--TitlePanel contient le nom de l'application et le titre de la page-->
         <Grid x:Name="fiveGrid" HorizontalAlignment="Left" Height="225" VerticalAlignment="Top" Width="480" Grid.RowSpan="2">
             <Image Source="{Binding photo}" HorizontalAlignment="Left" Height="225" VerticalAlignment="Top" Width="480" Stretch="Fill" Opacity="0.7"/>
-            <TextBlock x:Name="NameBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding name}" VerticalAlignment="Top" Margin="151,35,0,0" Height="115" Width="203" FontSize="40"/>
-            <TextBlock x:Name="DateBlock" Text="Date" HorizontalAlignment="Left" Margin="10,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227" Height="60"/>
-            <Button x:Name="QuitButton" Content="Quitter" HorizontalAlignment="Left" Margin="355,155,0,0" VerticalAlignment="Top" Width="125" Height="70" Click="Button_Click_1" IsEnabled="False" Opacity="0"/>
-            <Button Content="Retour" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_2"/>
-            <Button x:Name="InviteButton" Content="Inviter" HorizontalAlignment="Left" Margin="355,0,0,0" VerticalAlignment="Top" Opacity="0" IsEnabled="False" Click="InviteButton_Click"/>
+            <TextBlock x:Name="NameBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="76,9,0,0" Height="99" Width="252" FontSize="30"/>
+            <TextBlock x:Name="DateBlock" Text="Date" HorizontalAlignment="Left" Margin="19,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227" Height="33"/>
+            <Button x:Name="QuitButton" Content="Quitter" HorizontalAlignment="Left" Margin="355,95,0,0" VerticalAlignment="Top" Width="125" Height="75" Click="Button_Click_1" IsEnabled="False" Opacity="0"/>
+            <Button x:Name="InviteButton" Content="Inviter" HorizontalAlignment="Left" Margin="364,0,0,0" VerticalAlignment="Top" Opacity="0" IsEnabled="False" Click="InviteButton_Click"/>
+            <Image HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="21" Source="/Assets/elements/combinedShape.png" Margin="19,10,0,0" Tap="Button_Click_2"/>
+            <Grid HorizontalAlignment="Left" Height="55" Margin="0,170,0,0" VerticalAlignment="Top" Width="480" Background="#FF222020" Opacity="0.7">
+                <TextBlock x:Name="PlayerCountBox" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="460"/>
+            </Grid>
         </Grid>
 
         <!--ContentPanel - placez tout contenu supplémentaire ici-->
@@ -57,7 +60,7 @@
                 <Grid.RenderTransform>
                     <CompositeTransform/>
                 </Grid.RenderTransform>
-                <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="65,0,0,0" TextWrapping="Wrap" Text="{Binding teams[0].name, FallbackValue=Unknown team}" VerticalAlignment="Top" Tap="TextBlock_Tap" RenderTransformOrigin="0.5,0.5">
+                <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="105,0,0,0" TextWrapping="Wrap" Text="{Binding teams[0].name, FallbackValue=Unknown team}" VerticalAlignment="Top" Tap="TextBlock_Tap" RenderTransformOrigin="0.5,0.5" Width="189">
                     <TextBlock.RenderTransform>
                         <CompositeTransform/>
                     </TextBlock.RenderTransform>
@@ -87,9 +90,13 @@
                         </Button.RenderTransform>
                     </Button>
                 </Grid>
+                <Image HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="34" Source="/Assets/elements/people.png" Margin="10,0,0,0"/>
+                <Image HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="34" Source="/Assets/elements/people.png" Margin="10,201,0,-44"/>
+                <TextBlock x:Name="TeamACount" HorizontalAlignment="Left" Margin="49,10,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Height="24" Width="44"/>
+                <TextBlock x:Name="TeamBCount" HorizontalAlignment="Left" Margin="49,211,0,-39" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Height="24" Width="44"/>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="216" Margin="0,201,0,0" VerticalAlignment="Top" Width="480">
-                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="66,5,0,0" TextWrapping="Wrap" Text="{Binding teams[1].name, FallbackValue='Unknown team'}" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="107,0,0,0" TextWrapping="Wrap" Text="{Binding teams[1].name, FallbackValue='Unknown team'}" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
                     <TextBlock.RenderTransform>
                         <CompositeTransform/>
                     </TextBlock.RenderTransform>
@@ -110,8 +117,8 @@
                     <Button x:Name="buttonJoin2" CommandParameter="2" Content="Rejoindre" HorizontalAlignment="Left" Margin="331,94,0,0" VerticalAlignment="Top" Click="button_Click"/>
                 </Grid>
             </Grid>
-            <local:WindowsPhoneControl1 HorizontalAlignment="Left" Margin="0,437,0,0" VerticalAlignment="Top"/>
         </Grid>
+        <local:WindowsPhoneControl1 HorizontalAlignment="Left" Margin="0,667,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

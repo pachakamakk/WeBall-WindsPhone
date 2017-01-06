@@ -43,6 +43,7 @@ namespace weball_windowsPhone
         public int amount { get; set; }
         public DateTime createdAt { get; set; }
         public List<Teams> teams { get; set; }
+        public creator savedCreator { get; set; }
         public dynamic createdBy { get; set; }
      //   public string createdWith { get; set; }
         public int currentPlayers { get; set; }

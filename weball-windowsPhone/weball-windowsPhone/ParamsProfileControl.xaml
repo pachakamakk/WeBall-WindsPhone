@@ -7,7 +7,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}" d:DesignWidth="480" Height="1320.756">
+    Foreground="{StaticResource PhoneForegroundBrush}" d:DesignWidth="480" Height="1331">
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Mon compte" VerticalAlignment="Top" Foreground="#FF40E02C"/>

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Windows.Media;
 
 namespace weball_windowsPhone
 {
@@ -30,12 +31,27 @@ namespace weball_windowsPhone
                 else
                 {
                     await WeBallAPI.getUser(parameter);
-                    if (WeBallAPI.Success == false)
-                        return;
-                    FirstNamePrompt.Text = WeBallAPI.profileUser.fullName;
-                    profileStack.DataContext = WeBallAPI.profileUser;
                     addFriend.Opacity = 100;
                     addFriend.IsEnabled = true;
+                    if (WeBallAPI.Success == false)
+                        return;
+/*                    if (WeBallAPI.profileUser.relationStatus.isRelation == 0)
+                    {
+                        addFriend.Opacity = 100;
+                        GridAdd.Background = new SolidColorBrush(Colors.Orange);
+                    }
+                    else if (WeBallAPI.profileUser.relationStatus.isRelation == 2)
+                    {
+                        addFriend.Opacity = 100;
+                        GridAdd.Background = new SolidColorBrush(Colors.Green);
+                    }
+                    else
+                    {
+                        addFriend.Opacity = 100;
+                        addFriend.IsEnabled = true;
+                    }*/
+                    FirstNamePrompt.Text = WeBallAPI.profileUser.fullName;
+                    profileStack.DataContext = WeBallAPI.profileUser;
                 }
             }
             else

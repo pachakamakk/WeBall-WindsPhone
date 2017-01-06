@@ -6,10 +6,11 @@
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}" Height="94.397" Width="351">
+    Foreground="{StaticResource PhoneForegroundBrush}" Height="94.397" Width="480">
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}" Margin="0,0,-24,0">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
         <Image x:Name="ProfileImage" HorizontalAlignment="Left" Height="84" VerticalAlignment="Top" Width="84" Source="{ Binding from.photo }"/>
-        <TextBlock x:Name="TextNotif" HorizontalAlignment="Left" Margin="103,10,0,0" TextWrapping="Wrap" Text="{ Binding type }" VerticalAlignment="Top" Height="74" Width="262"/>
+        <TextBlock x:Name="TextNotif" HorizontalAlignment="Left" Margin="103,10,0,0" TextWrapping="Wrap" Text="{ Binding type }" VerticalAlignment="Top" Height="74" Width="367"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="103,10,0,0" VerticalAlignment="Top" Width="367" Opacity="0" CommandParameter="{ Binding content }" Click="Button_Click" Height="74"/>
     </Grid>
 </UserControl>

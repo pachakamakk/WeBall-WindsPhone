@@ -51,7 +51,7 @@
                 </Border.RenderTransform>
             </Border>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="116" Grid.RowSpan="2" VerticalAlignment="Top" Width="480" Background="#FF312A2A" Opacity="0.7">
+        <Grid HorizontalAlignment="Left" Height="98" Grid.RowSpan="2" VerticalAlignment="Top" Width="480" Background="#FF312A2A" Opacity="0.7">
             <TextBlock HorizontalAlignment="Left" Margin="150,27,0,0" TextWrapping="Wrap" Text="Réservation" VerticalAlignment="Top" Height="58" Width="183" Foreground="White" FontSize="35"/>
             <Button Content="Annuler" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,39,0,0" BorderThickness="0" Click="Button_Click_1"/>
             <Button Content="Valider" HorizontalAlignment="Left" Margin="355,39,0,0" VerticalAlignment="Top" BorderThickness="0" Click="Button_Click"/>
